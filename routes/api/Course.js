@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const httpResponse = require ('../../util/http');
 
 // Course Model
 const Course = require('../../models/Course');
@@ -7,9 +8,16 @@ const Course = require('../../models/Course');
 // @route   GET api/items
 // @desc    Get All Items
 // @access  Public
-router.get('/',(req, res) => {
-    Course.find()
-    .then(items => res.json(items));
+router.get('/', async (req, res) => {
+
+    try {
+    const courses = await Course.find({});
+    httpResponse.successResponse(res, courses);
+    } catch (e) {
+        console.log(e);
+        httpResponse.failureResponse(res, e.toString());
+    }
+    
 });
 
 // @route   POST api/items

@@ -15,7 +15,7 @@ class SearchForClasses extends Component {
             courseNames: ["Calculus I", "Natural Science I", "Natural Science II", "Programming I", "Introduction to Computing",
                         "Professional and Technical Writing","Calculus II", "Physics I",  "Discrete Math",  "Discrete Structures", "Programming II",
                         "Technology in the Global Arena", "Physics II", "Computer Architecture", "Data Structures", "Software Engineering I",
-                        "Statistics", "Operating Systems", "Systems Programming", "Senior Project"]
+                        "Statistics", "Systems Programming", "Operating Systems", "Senior Project"]
         }
     }
 
@@ -54,7 +54,7 @@ class SearchForClasses extends Component {
                     <FlowChartBox action={this.handleClick.bind(this,0)} t={44} l={41} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,1)}  t={44} l={175} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,2)}  t={44} l={308} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox action={this.handleClick.bind(this,3)} action={this.handleClick.bind(this,0)} t={44} l={690} width={116} height={84}></FlowChartBox>
+                    <FlowChartBox action={this.handleClick.bind(this,3)}  t={44} l={690} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,4)} t={44} l={840} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,5)}  t={44} l={974} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,6)}  t={177} l={41} width={116} height={84}></FlowChartBox>
@@ -74,7 +74,7 @@ class SearchForClasses extends Component {
                     <img src={ require('../img/flowchart.png') } />
                 </div>
                 
-                <Link to={{pathname: '/searchresults',state: {query: this.state.selected}}}><Button color="success" style={{float: 'right', marginRight: '30%', paddingLeft: '60px', paddingRight: '60px'}}>Search</Button></Link>
+                <Link to={{pathname: '/searchresults',state: {query: this.state.selected}}}><Button onClick={() => console.log(this.state.selected)}color="success" style={{float: 'right', marginRight: '30%', paddingLeft: '60px', paddingRight: '60px'}}>Search</Button></Link>
              </div> 
         );
     }
