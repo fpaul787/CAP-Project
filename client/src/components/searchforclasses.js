@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './styles/flowstyles.css';
 import FlowChartBox from './flowchartbox';
-import {Button, Modal} from 'reactstrap'
-import ModalTag from './modal';
+import {Button} from 'reactstrap'
+import {Link} from 'react-router-dom';
+
 
 class SearchForClasses extends Component {
 
@@ -73,8 +74,8 @@ class SearchForClasses extends Component {
                     <img src={ require('../img/flowchart.png') } />
                 </div>
                 
-                <Button onClick={this.search.bind(this)} color="success" style={{float: 'right', marginRight: '30%', paddingLeft: '60px', paddingRight: '60px'}}>Search</Button>
-            </div> 
+                <Link to={{pathname: '/searchresults',state: {query: this.state.selected}}}><Button color="success" style={{float: 'right', marginRight: '30%', paddingLeft: '60px', paddingRight: '60px'}}>Search</Button></Link>
+             </div> 
         );
     }
 }
