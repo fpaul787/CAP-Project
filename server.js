@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const items = require('./routes/api/items');
+const courses = require('./routes/api/Course');
 
 const app = express();
 
@@ -19,7 +19,7 @@ mongoose.connect(db, {useUnifiedTopology: true, useNewUrlParser: true})
 
 
 // Routes
-app.use('/api/items', items);
+app.use('/api/courses', courses);
 
 // Open on port process.env.PORT or 5000
 const port = process.env.PORT || 5000;

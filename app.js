@@ -9,11 +9,10 @@ require ('dotenv/config');
 app.use(bodyParser.json());
 
 //Import routes
-const postsRoute = require('./routes/posts');
+const courseRoute = require('./routes/api/Course');
 
 // Link /posts to postsRoutes (which links to './routes/posts' where it you have app.get('/')
-app.use('/posts', postsRoute);
-
+app.use('/courses', courseRoute)
 
 // Middleware goes here, functions go here that happen when
 // somethings pings a route.
