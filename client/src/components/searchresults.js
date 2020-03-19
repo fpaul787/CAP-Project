@@ -33,9 +33,13 @@ class SearchResults extends Component {
 
 
     getCourses(){
+        var filteredResult
+
         fetch('/api/courses')
         .then(results => results.json())
-        .then(results => console.log(results));
+        .then(results => {
+            filteredResult = results.filter(course => course.name === this.state.query[0])
+            console.log(filteredResult)});
     }
     
     render() {
