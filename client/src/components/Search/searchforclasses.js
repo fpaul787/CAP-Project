@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './styles/flowstyles.css';
-import FlowChartBox from './flowchartbox';
+import FlowChartBox from '../flowchartbox';
 import {Button} from 'reactstrap'
 import {Link} from 'react-router-dom';
 
