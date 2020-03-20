@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './styles/flowstyles.css';
+import '../styles/flowstyles.css';
 import FlowChartBox from '../flowchartbox';
 import {Button} from 'reactstrap'
 import {Link} from 'react-router-dom';
@@ -71,7 +71,7 @@ class SearchForClasses extends Component {
                     <FlowChartBox action={this.handleClick.bind(this,17)}  t={426} l={692} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,18)}  t={475} l={424} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,19)} t={475} l={974} width={116} height={84}></FlowChartBox>
-                    <img src={ require('../img/flowchart.png') } />
+                    <img src={ require('../../img/flowchart.png') } />
                 </div>
                 
                 <Link to={{pathname: '/searchresults',state: {query: this.state.selected}}}><Button onClick={() => console.log(this.state.selected)}color="success" style={{float: 'right', marginRight: '30%', paddingLeft: '60px', paddingRight: '60px'}}>Search</Button></Link>
