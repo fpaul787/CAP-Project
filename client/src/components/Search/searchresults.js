@@ -22,19 +22,18 @@ class SearchResults extends Component {
         
         const handle = this.props.location.state.query;
       
-        let query = [];
-        for (let i = 0; i < 20; i++){
-            if (handle[i] === true){
-                query.push(courseNames[i]);
+        
+        
+        for (let i = 0; i < handle.length; i++){
+            if (handle[i].selected === true){
+                this.state.query.push(handle[i].name);
             }
-        }
-            this.state.query = query;
-            console.log(this.state.query);
+        }            
       }
 
 
     getCourses(){
-        var filteredResult
+        
 
         fetch('/api/courses')
         .then(results => results.json())
@@ -46,7 +45,7 @@ class SearchResults extends Component {
         return (
             <div style={{padding: '30px'}}>
                 {this.state.courses.map(function(item, index) {
-                    for (let i = 0; i < this.state.query.length; i++){
+                    for (let i = 0; i < 20; i++){
                         if (item.name === this.state.query[i]){
                             return <div style={{float: 'left', width: '30%', padding: '20px', margin: '10px', backgroundColor: '#ddd', border: '1px solid black'}}>{item.name} {item.hour}</div>
                         }
