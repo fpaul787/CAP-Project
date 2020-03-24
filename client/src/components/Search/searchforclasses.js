@@ -122,9 +122,14 @@ class SearchForClasses extends Component {
         }
     }
 
+    
     handleClick(index){
         this.state.courses[index].selected = !this.state.courses[index].selected;
-        this.state.queryCourses.push(this.state.courses[index])
+
+        // FIX
+        if(this.courses[index].selected){
+            this.state.queryCourses.push(this.state.courses[index])
+        }
     
     }
 
