@@ -10,9 +10,7 @@ function App() {
         <AppNavbar  />
         <div style={{width: '85%', float: 'right'}}>
            <Main/>
-        </div>
-        
-      
+        </div>      
     </div>
   );
 }

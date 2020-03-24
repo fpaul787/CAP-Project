@@ -1,13 +1,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SearchForClasses from './searchforclasses';
-import ViewMyClasses from './viewmyclasses';
-import ShoppingCart from './shoppingcart';
-import MySchedule from './myschedule';
-import DropClasses from './dropclasses';
-import BrowseCatalog from './browsecatalog';
+import SearchForClasses from './Search/searchforclasses';
+import SearchResults from './Search/searchresults';
+import ViewMyClasses from './Classes/viewmyclasses';
+import ShoppingCart from './Shopping/shoppingcart';
+import MySchedule from './Schedule/myschedule';
+import DropClasses from './Classes/dropclasses';
+import BrowseCatalog from './Catelog/browsecatalog';
 import LandingPage from './landingpage';
-import SearchResults from './searchresults';
+import Success from './Search/success';
+
 
 const Main = () => {
     return (
@@ -20,6 +22,7 @@ const Main = () => {
             <Route path="/dropclasses" component={DropClasses} />
             <Route path="/browsecatalog" component={BrowseCatalog} />
             <Route path="/searchresults" component={SearchResults}/>
+            <Route path="/success" component={Success}/>
            
         </Switch>
     )
