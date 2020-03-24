@@ -69,25 +69,6 @@ class SearchForClasses extends Component {
                     selected: false
                 },
                 {
-<<<<<<< HEAD
-                    name: "Physics II",
-                    selected: false
-                },
-                {
-                    name: "Discrete Math",  
-                    selected: false
-                },
-                {
-                    name: "Discrete Structures",
-                    selected: false
-                },
-                {
-                    name: "Programming II",
-                    selected: false
-                },
-                {
-                    name: "Technology in the Global Arena", 
-=======
                     name: "Discrete Math",
                     selected: false
                 },
@@ -105,7 +86,6 @@ class SearchForClasses extends Component {
                 },
                 {
                     name: "Physics II", 
->>>>>>> origin/manny
                     selected: false
                 },
                 {
