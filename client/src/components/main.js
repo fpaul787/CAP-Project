@@ -8,6 +8,10 @@ import MySchedule from './Schedule/myschedule';
 import DropClasses from './Classes/dropclasses';
 import BrowseCatalog from './Catelog/browsecatalog';
 import LandingPage from './landingpage';
+<<<<<<< HEAD
+=======
+import Success from './Search/success';
+>>>>>>> origin/manny
 
 
 const Main = () => {
@@ -21,6 +25,7 @@ const Main = () => {
             <Route path="/dropclasses" component={DropClasses} />
             <Route path="/browsecatalog" component={BrowseCatalog} />
             <Route path="/searchresults" component={SearchResults}/>
+            <Route path="/success" component={Success}/>
            
         </Switch>
     )

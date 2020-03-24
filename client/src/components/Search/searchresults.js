@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
 import {Card} from 'react-bootstrap'
 import {Button} from 'reactstrap'
+=======
+import {Card} from 'react-bootstrap';
+import {Button} from 'reactstrap';
+import {Link} from 'react-router-dom';
+>>>>>>> origin/manny
 
 import '../styles/flowstyles.css';
 
@@ -48,6 +54,10 @@ class SearchResults extends Component {
         fetch('/api/courses')
         .then(results => results.json())
         .then(results => this.setState({'courses': results.data}));
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/manny
     
     }
 
@@ -64,10 +74,58 @@ class SearchResults extends Component {
             this.setState({courseCount: this.state.courseCount+1});
         }
 
+<<<<<<< HEAD
         console.log(this.state.chosenClasses);
 
     }
     
+=======
+    }
+    
+    addToCart(){
+        
+        for (let i = 0; i < this.state.courseCount; i++){
+            let submissiondata = ({
+                "courseID" : this.state.chosenClasses[i]
+            });
+
+            fetch('/api/cart', {
+                method: 'POST',
+                body: JSON.stringify(submissiondata),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(res => res.json())
+            .then(data => console.log(data));  
+
+
+        }
+        
+
+    }
+
+    addToEnrolled(){
+        for (let i = 0; i < this.state.courseCount; i++){
+            let submissiondata = ({
+                "courseID" : this.state.chosenClasses[i]
+            });
+
+            fetch('/api/enrolled', {
+                method: 'POST',
+                body: JSON.stringify(submissiondata),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(res => res.json())
+            .then(data => console.log(data));  
+
+
+        }
+    }
+
+>>>>>>> origin/manny
     render() {
         return (
             <div>
@@ -106,8 +164,15 @@ class SearchResults extends Component {
              
              <span style={{float: 'right', marginTop: '20px', marginRight: '50px'}}>
              <strong style={{marginRight: '50px'}}>{this.state.courseCount} Classes Selected.</strong>
+<<<<<<< HEAD
                 <Button 
                     onClick={() => console.log(this.state.selected)}
+=======
+
+             <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Shopping Cart"}}}>
+                <Button 
+                    onClick={this.addToCart.bind(this)}
+>>>>>>> origin/manny
                     color="primary" 
                     style={
                         {
@@ -115,8 +180,17 @@ class SearchResults extends Component {
                         paddingRight: '60px'}}>
                     Add to Cart
                 </Button>
+<<<<<<< HEAD
                 <Button 
                     onClick={() => console.log(this.state.selected)}
+=======
+            </Link>
+
+
+            <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Schedule"}}}>
+                <Button 
+                    onClick={this.addToEnrolled.bind(this)}
+>>>>>>> origin/manny
                     color="success" 
                     style={
                         {
@@ -125,6 +199,10 @@ class SearchResults extends Component {
                             marginLeft: '15px'}}>
                     Enroll
                 </Button>
+<<<<<<< HEAD
+=======
+            </Link>
+>>>>>>> origin/manny
             </span>
              </div>
         );

@@ -69,6 +69,7 @@ class SearchForClasses extends Component {
                     selected: false
                 },
                 {
+<<<<<<< HEAD
                     name: "Physics II",
                     selected: false
                 },
@@ -86,6 +87,25 @@ class SearchForClasses extends Component {
                 },
                 {
                     name: "Technology in the Global Arena", 
+=======
+                    name: "Discrete Math",
+                    selected: false
+                },
+                {
+                    name: "Discrete Structures",  
+                    selected: false
+                },
+                {
+                    name: "Programming II",
+                    selected: false
+                },
+                {
+                    name: "Technology in the Global Arena",
+                    selected: false
+                },
+                {
+                    name: "Physics II", 
+>>>>>>> origin/manny
                     selected: false
                 },
                 {
@@ -122,14 +142,9 @@ class SearchForClasses extends Component {
         }
     }
 
-    
     handleClick(index){
         this.state.courses[index].selected = !this.state.courses[index].selected;
-
-        // FIX
-        if(this.courses[index].selected){
-            this.state.queryCourses.push(this.state.courses[index])
-        }
+        this.state.queryCourses.push(this.state.courses[index])
     
     }
 
@@ -159,9 +174,6 @@ class SearchForClasses extends Component {
                     <FlowChartBox action={this.handleClick.bind(this,0)}   top={44}  left={41} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,1)}   top={44}  left={175} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,2)}   top={44}  left={308} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox action={this.handleClick.bind(this,3)}   top={44}  left={690} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox action={this.handleClick.bind(this,4)}   top={44}  left={840} width={116} height={84}></FlowChartBox>
-                     <FlowChartBox action={this.handleClick.bind(this,2)}  top={44}  left={308} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,3)}   top={44}  left={690} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,4)}   top={44}  left={840} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,5)}   top={44}  left={974} width={116} height={84}></FlowChartBox>

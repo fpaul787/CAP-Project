@@ -10,16 +10,13 @@ app.use(bodyParser.json());
 
 //Import routes
 const courseRoute = require('./routes/api/Course');
+const cartRoute = require('./routes/api/CartItem');
+const enrollRoute = require('./routes/api/EnrollItem');
 
 // Link /posts to postsRoutes (which links to './routes/posts' where it you have app.get('/')
-app.use('/courses', courseRoute)
-
-// Middleware goes here, functions go here that happen when
-// somethings pings a route.
-//app.use('/posts', () => {
-//   console.log('this function runs whenever /posts hits.')
-//});
-
+app.use('/courses', courseRoute);
+app.use('/cartCourses', cartRoute);
+app.use('/shoppingCourses', enrollRoute);
 
 
 //Routes
