@@ -125,7 +125,7 @@ class SearchForClasses extends Component {
     handleClick(index){
         this.state.courses[index].selected = !this.state.courses[index].selected;
         this.state.queryCourses.push(this.state.courses[index])
-    
+        
     }
 
     checkColor(index){
@@ -136,14 +136,15 @@ class SearchForClasses extends Component {
         }
     }
 
-    search(){
-        let string = 'Classes Selected: ';
-        for (let i = 0; i < this.state.selected.length; i++){
-            if (this.state.selected[i] === true){
-                string += this.state.courseNames[i] + ", ";
-            }
-        }        
-    }
+    // Not needed
+    // search(){
+        
+    //     for (let i = 0; i < this.state.selected.length; i++){
+    //         if (this.state.selected[i] === true){
+    //             string += this.state.courseNames[i] + ", ";
+    //         }
+    //     }        
+    // }
 
   
 
@@ -171,7 +172,7 @@ class SearchForClasses extends Component {
                     <FlowChartBox action={this.handleClick.bind(this,17)}  top={426} left={692} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,18)}  top={475} left={424} width={116} height={84}></FlowChartBox>
                     <FlowChartBox action={this.handleClick.bind(this,19)}  top={475} left={974} width={116} height={84}></FlowChartBox> 
-                    <img src={ require('../../img/flowchart.png') } />
+                    <img src={ require('../../img/flowchart.png') } alt="Flow Chart" />
                 </div>
                 
                 <Link to={{pathname: '/searchresults', state: {query: this.state.queryCourses}}}>

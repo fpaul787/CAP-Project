@@ -29,27 +29,23 @@ class SearchResults extends Component {
     }
 
     componentDidMount () {
-        this.getCourses();
+        this.getCourses()
         
-        const handle = this.props.location.state.query;
-      
-        
+        const handle = this.props.location.state.query       
         
         for (let i = 0; i < handle.length; i++){
             if (handle[i].selected === true){
-                this.state.query.push(handle[i].name);
+                this.state.query.push(handle[i].name)
             }
         }            
       }
 
 
-    getCourses(){
-        
+    getCourses(){  
 
         fetch('/api/courses')
         .then(results => results.json())
-        .then(results => this.setState({'courses': results.data}));
-        
+        .then(results => this.setState({'courses': results.data}));        
     
     }
 
