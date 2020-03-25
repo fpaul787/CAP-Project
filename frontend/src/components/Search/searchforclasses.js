@@ -177,7 +177,7 @@ class SearchForClasses extends Component {
                 
                 <Link to={{pathname: '/searchresults', state: {query: this.state.queryCourses}}}>
                     <Button 
-                    onClick={() => console.log(this.state.selected)}
+                   
                     color="success" 
                     style={
                         {float: 'right', 
