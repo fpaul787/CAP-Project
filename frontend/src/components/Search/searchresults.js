@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {Card} from 'react-bootstrap'
-import {Button} from 'reactstrap'
-=======
 import {Card} from 'react-bootstrap';
 import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
->>>>>>> origin/manny
 
 import '../styles/flowstyles.css';
 
@@ -54,10 +49,7 @@ class SearchResults extends Component {
         fetch('/api/courses')
         .then(results => results.json())
         .then(results => this.setState({'courses': results.data}));
-<<<<<<< HEAD
-=======
         
->>>>>>> origin/manny
     
     }
 
@@ -74,12 +66,6 @@ class SearchResults extends Component {
             this.setState({courseCount: this.state.courseCount+1});
         }
 
-<<<<<<< HEAD
-        console.log(this.state.chosenClasses);
-
-    }
-    
-=======
     }
     
     addToCart(){
@@ -125,7 +111,6 @@ class SearchResults extends Component {
         }
     }
 
->>>>>>> origin/manny
     render() {
         return (
             <div>
@@ -164,15 +149,10 @@ class SearchResults extends Component {
              
              <span style={{float: 'right', marginTop: '20px', marginRight: '50px'}}>
              <strong style={{marginRight: '50px'}}>{this.state.courseCount} Classes Selected.</strong>
-<<<<<<< HEAD
-                <Button 
-                    onClick={() => console.log(this.state.selected)}
-=======
 
              <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Shopping Cart"}}}>
                 <Button 
                     onClick={this.addToCart.bind(this)}
->>>>>>> origin/manny
                     color="primary" 
                     style={
                         {
@@ -180,17 +160,12 @@ class SearchResults extends Component {
                         paddingRight: '60px'}}>
                     Add to Cart
                 </Button>
-<<<<<<< HEAD
-                <Button 
-                    onClick={() => console.log(this.state.selected)}
-=======
             </Link>
 
 
             <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Schedule"}}}>
                 <Button 
                     onClick={this.addToEnrolled.bind(this)}
->>>>>>> origin/manny
                     color="success" 
                     style={
                         {
@@ -199,10 +174,7 @@ class SearchResults extends Component {
                             marginLeft: '15px'}}>
                     Enroll
                 </Button>
-<<<<<<< HEAD
-=======
             </Link>
->>>>>>> origin/manny
             </span>
              </div>
         );

@@ -1,14 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-
-class ShoppingCart extends Component {
-        
-    
-    render() {
-        return (
-            <div>
-                <h1>ShoppingCart</h1>
-=======
 import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Button} from 'reactstrap';
@@ -171,7 +161,6 @@ class ShoppingCart extends Component {
                         </Button>
                     </Link>
                 </div>
->>>>>>> origin/manny
              </div>
         );
         

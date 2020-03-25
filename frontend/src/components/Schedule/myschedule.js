@@ -1,14 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-
-class MySchedule extends Component {
-        
-    
-    render() {
-        return (
-            <div>
-                <h1>MySchedule</h1>
-=======
 import {Card} from 'react-bootstrap';
 
 class MySchedule extends Component {
@@ -68,7 +58,6 @@ class MySchedule extends Component {
                          }
                     }
             }, this)}
->>>>>>> origin/manny
              </div>
         );
         

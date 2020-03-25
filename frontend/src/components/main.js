@@ -8,10 +8,7 @@ import MySchedule from './Schedule/myschedule';
 import DropClasses from './Classes/dropclasses';
 import BrowseCatalog from './Catelog/browsecatalog';
 import LandingPage from './landingpage';
-<<<<<<< HEAD
-=======
 import Success from './Search/success';
->>>>>>> origin/manny
 
 
 const Main = () => {

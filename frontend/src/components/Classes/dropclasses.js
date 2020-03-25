@@ -1,14 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-
-class DropClasses extends Component {
-        
-    
-    render() {
-        return (
-            <div>
-                <h1>DropClasses</h1>
-=======
 import {Card} from 'react-bootstrap';
 import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
@@ -125,7 +115,6 @@ class DropClasses extends Component {
                 </Button>
             </Link>
              </div>
->>>>>>> origin/manny
              </div>
         );
         
