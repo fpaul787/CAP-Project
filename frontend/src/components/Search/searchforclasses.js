@@ -10,110 +10,106 @@ class SearchForClasses extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selected: [
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false],
-            courseNames: ["Calculus I", "Natural Science I", "Natural Science II", "Programming I", "Introduction to Computing",
-                        "Professional and Technical Writing","Calculus II", "Physics I",  "Discrete Math",  "Discrete Structures", "Programming II",
-                        "Technology in the Global Arena", "Physics II", "Computer Architecture", "Data Structures", "Software Engineering I",
-                        "Statistics", "Systems Programming", "Operating Systems", "Senior Project"],
+            
             courses: [
                 {
                     name: "Calculus I",
+                    numbr: 2311,
                     selected: false
                 },
                 {
                     name: "Natural Science I",
+                    numbr: 0,
                     selected: false
                 },
                 {
                     name: "Natural Science II",
+                    numbr: 1,
                     selected: false
                 },
                 {
                     name: "Programming I",
+                    numbr: 3337,
                     selected: false
                 },
                 {
                     name: "Introduction to Computing",
+                    numbr: 1920,
                     selected: false
                 }, 
                 {
                     name: "Professional and Technical Writing",
+                    numbr: 3249,
                     selected: false
                 },
                 {
                     name: "Calculus II",
+                    numbr: 2312,
                     selected: false
                 }, 
                 {
                     name: "Physics I",
+                    numbr: 2048,
                     selected: false
                 },
                 {
                     name: "Discrete Math",
+                    numbr: 2104,
                     selected: false
                 },
                 {
                     name: "Discrete Structures",  
+                    numbr: 3100,
                     selected: false
                 },
                 {
                     name: "Programming II",
+                    numbr: 3337,
                     selected: false
                 },
                 {
                     name: "Technology in the Global Arena",
+                    numbr: 3095,
                     selected: false
                 },
                 {
                     name: "Physics II", 
+                    numbr: 2049,
                     selected: false
                 },
                 {
                     name:"Computer Architecture", 
+                    numbr: 3102,
                     selected: false
                 },
                 {
                     name:"Data Structures",  
+                    numbr: 3530,
                     selected: false
                 },
                 {
                     name:"Software Engineering I",
+                    numbr: 4010,
                     selected: false
                 },
                 {
                     name: "Statistics", 
+                    numbr: 3033,
                     selected: false
                 },
                 {
                     name: "Systems Programming",
+                    numbr: 4338,
                     selected: false
                 },
                 {
                     name: "Operating Systems", 
+                    numbr: 4610,
                     selected: false
                 },
                 {
                     name: "Senior Project",
+                    numbr: 4911,
                     selected: false
                 }
                 
@@ -122,9 +118,15 @@ class SearchForClasses extends Component {
         }
     }
 
+    remove
+
     handleClick(index){
-        this.state.courses[index].selected = !this.state.courses[index].selected;
-        this.state.queryCourses.push(this.state.courses[index])
+        
+        // We might need to change data so that each course object
+        // can have a unique number. That way, we can have an array
+        // of course numbers and remove them when necessary.
+        this.state.courses[index].selected = !this.state.courses[index].selected;       
+        this.state.queryCourses.push(this.state.courses[index])        
         
     }
 
@@ -136,17 +138,6 @@ class SearchForClasses extends Component {
         }
     }
 
-    // Not needed
-    // search(){
-        
-    //     for (let i = 0; i < this.state.selected.length; i++){
-    //         if (this.state.selected[i] === true){
-    //             string += this.state.courseNames[i] + ", ";
-    //         }
-    //     }        
-    // }
-
-  
 
     render() {
         return (

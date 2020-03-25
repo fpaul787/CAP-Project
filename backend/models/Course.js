@@ -7,6 +7,10 @@ const courseSchema = new Schema({
         type: String,
         required: true
     },
+    course_number: {
+        type: String,
+        required: true
+    },
     hour: {
         type: String,
         required: true
