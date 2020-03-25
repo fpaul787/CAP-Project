@@ -52,18 +52,16 @@ router.post('/', (req, res) => {
 // @desc    Delete An Item
 // @access  Public
 router.delete('/:id', (req, res) => {
-    Course.findById(req.params.id)
+    if(req.params.id === 'all')
+    {
+        Course.collection.deleteMany({}).then(() => res.json({ success: true }))
+    }else{
+        Course.findById(req.params.id)
         .then(item => item.remove().then(() => res.json({ success: true })))
         .catch(err => res.status(404).json({ success: false }))
-})
-
-// @route   DELETE api/courses/all
-// @desc    Delete all courses
-// @access  Public
-router.delete('/all',  async (req, res) => {
-
-       
+    }
     
 })
+
 
 module.exports = router
