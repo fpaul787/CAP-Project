@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Button} from 'reactstrap';
 
 class MySchedule extends Component {
         
@@ -8,7 +10,8 @@ class MySchedule extends Component {
 
         this.state = {
             'totalCourses': [],
-            'chosenCourses': []
+            'chosenCourses': [],
+            loaded: null
             
         }
     }
@@ -26,15 +29,43 @@ class MySchedule extends Component {
         
         fetch('/api/enrolled')
         .then(results => results.json())
-        .then(results => this.setState({'chosenCourses': results.data}));
+        .then(results => this.setState({'chosenCourses': results.data, loaded: true}));
 
 
     }
 
     render() {
-        return (
+
+        if (this.state.loaded != true){
+            return <div style={{marginLeft: '35%', marginTop: '10%'}}>Loading...</div>
+        }
+
+
+        {/* No courses in schedule */}
+        if (this.state.chosenCourses.length === 0){
+            return <div style={{marginLeft: '25%', marginTop: '10%', width:'500px'}}>
+                
+                    <div style={{marginLeft: '130px'}}><h2>My Schedule</h2></div>
+                    <div><strong>No courses in schedule, search and add courses to your schedule</strong></div>
+                    <div>
+                        <Link to="/searchforclasses">
+                        <Button 
+                            color="success" 
+                            style={
+                                {
+                                    paddingLeft: '60px', 
+                                    paddingRight: '60px',
+                                    marginLeft: '110px',
+                                    marginTop: '20px'}}>
+                            Search for classes
+                        </Button>
+                    </Link>
+                </div>
+                </div>
+        } else {
+            return (
             <div>
-                <h1>Schedule</h1>
+                <h2 style={{display: 'flex', margin: '1%',  justifyContent:'center', alignItems:'center'}}>My Schedule</h2>
                 {this.state.totalCourses.map(function(item, index) {
                     for (let i = 0; i < this.state.chosenCourses.length; i++){
                         if (item._id === this.state.chosenCourses[i].courseID){
@@ -60,7 +91,7 @@ class MySchedule extends Component {
             }, this)}
              </div>
         );
-        
+        }
         
     }
 }

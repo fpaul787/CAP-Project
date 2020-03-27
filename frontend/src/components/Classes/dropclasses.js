@@ -17,7 +17,8 @@ class DropClasses extends Component {
         this.state = {
             'totalCourses': [],
             'enrolledCourses': [],
-            'checkedCourses': []
+            'checkedCourses': [],
+            loaded: null
             
         }
     }
@@ -35,7 +36,7 @@ class DropClasses extends Component {
         
         fetch('/api/enrolled')
         .then(results => results.json())
-        .then(results => this.setState({'enrolledCourses': results.data}));
+        .then(results => this.setState({'enrolledCourses': results.data, loaded: true}));
 
 
     }
@@ -67,10 +68,37 @@ class DropClasses extends Component {
     }
 
     render() {
+
+        if (this.state.loaded != true){
+            return <div style={{marginLeft: '35%', marginTop: '10%'}}>Loading...</div>
+        }
+    
+
+        {/* No courses in schedule */}
+        if (this.state.enrolledCourses.length === 0){
+            return <div style={{marginLeft: '25%', marginTop: '10%', width:'500px'}}>
+                    <div style={{marginLeft: '130px'}}><h2>Drop Courses</h2></div>
+                    <div><strong>No courses in schedule, search and add courses to your schedule</strong></div>
+                    <div>
+                        <Link to="/searchforclasses">
+                        <Button 
+                            color="success" 
+                            style={
+                                {
+                                    paddingLeft: '60px', 
+                                    paddingRight: '60px',
+                                    marginLeft: '110px',
+                                    marginTop: '20px'}}>
+                            Search for classes
+                        </Button>
+                    </Link>
+                </div>
+                </div>
+        } else {
         return (
             <div>
-            <div>
-                <h1>Select Classes to Drop</h1>
+             <div style={{overflowY: 'scroll', height: '620px', margin: '1%'}}> 
+                    <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Drop Classes</h2>
                 {this.state.totalCourses.map(function(item, index) {
                     for (let i = 0; i < this.state.enrolledCourses.length; i++){
                         if (item._id === this.state.enrolledCourses[i].courseID){
@@ -102,7 +130,7 @@ class DropClasses extends Component {
             }, this)}
              </div>
              <div>
-                 <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Schedule"}}}>
+                 <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Dropped"}}}>
                 <Button 
                     onClick={this.dropCourses.bind(this)}
                     color="danger" 
@@ -118,7 +146,7 @@ class DropClasses extends Component {
              </div>
         );
         
-        
+                        }
     }
 }
 

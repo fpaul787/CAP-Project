@@ -21,7 +21,7 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '20%'}}>
+                        marginLeft: '15%'}}>
                     View Shopping Cart
                 </Button>
             </Link>
@@ -36,13 +36,13 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '20%'}}>
+                        marginLeft: '15%'}}>
                     View Schedule
                 </Button>
             </Link>
             </div>
         } else if (this.props.location.state.type === "Removed from Cart"){
-            message = "Courses successfully removed from cart.";
+            message = "Courses successfully removed from Shopping Cart.";
             link = <div>
                 <Link to="/shoppingcart">
                 <Button 
@@ -51,16 +51,30 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '20%'}}>
+                        marginLeft: '15%'}}>
                     View Shopping Cart
+                </Button>
+            </Link>
+            </div>
+        } else if (this.props.location.state.type === "Dropped"){
+            message = "Courses successfully removed from your schedule.";
+            link = <div>
+                <Link to="/myschedule">
+                <Button 
+                    color="primary" 
+                    style={
+                        {
+                        paddingLeft: '60px', 
+                        paddingRight: '60px',
+                        marginLeft: '15%'}}>
+                    View Schedule
                 </Button>
             </Link>
             </div>
         }
 
-
         return (
-            <div style={{margin: '20%'}}>
+            <div style={{marginLeft: '20%', marginTop: '10%'}}>
                 <h3>{message}</h3>
                 {link}
              </div>

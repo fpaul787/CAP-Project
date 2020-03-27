@@ -18,13 +18,15 @@ class ShoppingCart extends Component {
             'totalCourses': [],
             'chosenCourses': [],
             'checkedCoursesID': [],
-            'checkedCoursesObjects': []
+            'checkedCoursesObjects': [],
+            loaded: null
             
         }
     }
 
     componentDidMount () {
         this.getCourses();
+        
     }
 
 
@@ -36,8 +38,9 @@ class ShoppingCart extends Component {
         
         fetch('/api/cart')
         .then(results => results.json())
-        .then(results => this.setState({'chosenCourses': results.data}));
+        .then(results => this.setState({'chosenCourses': results.data, loaded: true}));
 
+      
 
     }
 
@@ -98,10 +101,35 @@ class ShoppingCart extends Component {
 
 
     render() {
+        if (this.state.loaded != true){
+            return <div style={{marginLeft: '35%', marginTop: '10%'}}>Loading...</div>
+        }
+
+        if (this.state.chosenCourses.length === 0){
+            return <div style={{marginLeft: '25%', marginTop: '10%', width:'550px'}}>
+                    <div style={{marginLeft: '140px'}}><h2>Shopping Cart</h2></div>
+                    <div><strong>No courses in shopping cart, search and add courses to your schedule</strong></div>
+                    <div>
+                        <Link to="/searchforclasses">
+                        <Button 
+                            color="success" 
+                            style={
+                                {
+                                    paddingLeft: '60px', 
+                                    paddingRight: '60px',
+                                    marginLeft: '130px',
+                                    marginTop: '20px'}}>
+                            Search for classes
+                        </Button>
+                    </Link>
+                </div>
+                </div>
+        } else {
+
         return (
-            <div>
-                <div>
-                    <h1>ShoppingCart</h1>
+            <div style={{margin: '1%'}}>
+                <div style={{overflowY: 'scroll', height: '620px'}}> 
+                    <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Shopping Cart</h2>
                     {this.state.totalCourses.map(function(item, index) {
                         for (let i = 0; i < this.state.chosenCourses.length; i++){
                             if (item._id === this.state.chosenCourses[i].courseID){
@@ -132,9 +160,9 @@ class ShoppingCart extends Component {
                         }
                 }, this)}
                 </div>
-                <br />
-                <div>
-                    <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
+                
+                <div style={{marginLeft: '25%'}}>
+                    <Link style={{float:'left'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
                         <Button 
                             
                             onClick={this.removeCourses.bind(this)}
@@ -143,7 +171,10 @@ class ShoppingCart extends Component {
                                 {
                                     paddingLeft: '60px', 
                                     paddingRight: '60px',
-                                    marginLeft: '40%'}}>
+                                    height: '60px',
+                                    width: '220px',
+                                    marginLeft: '40%',
+                                    }}>
                             Remove From Cart
                         </Button>
                     </Link>
@@ -156,7 +187,10 @@ class ShoppingCart extends Component {
                                 {
                                     paddingLeft: '60px', 
                                     paddingRight: '60px',
-                                    marginLeft: '40%'}}>
+                                    height: '60px',
+                                    width: '220px',
+                                    marginLeft: '10%',
+                                }}>
                             Enroll
                         </Button>
                     </Link>
@@ -164,7 +198,7 @@ class ShoppingCart extends Component {
              </div>
         );
         
-        
+                                }
     }
 }
 
