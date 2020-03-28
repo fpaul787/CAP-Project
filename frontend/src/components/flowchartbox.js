@@ -12,10 +12,28 @@ class FlowChartBox extends Component {
                 top: this.props.top, 
                 left: this.props.left, 
                 width: this.props.width, 
-                height: this.props.height}
+                height: this.props.height,
+            }
         }
     }
 
+    componentDidMount(){
+        //default color logic:
+        if (this.props.default != ""){
+            this.setState({
+                selectionColor: {  
+                    position: 'absolute', 
+                    top: this.props.top, 
+                    left: this.props.left, 
+                    width: this.props.width, 
+                    height: this.props.height, 
+                    backgroundColor: this.props.default,
+                    opacity: '0.5'}
+            })
+        }
+
+
+    }
     
 
     handleClick(){

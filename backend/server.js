@@ -6,6 +6,8 @@ const cors = require('cors')
 const courses = require('./routes/api/Course')
 const cartRoute = require('./routes/api/CartItem')
 const enrollRoute = require('./routes/api/EnrollItem')
+const completedRoute = require('./routes/api/Completed')
+
 
 const app = express()
 
@@ -27,7 +29,7 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
 app.use('/api/courses', courses)
 app.use('/api/cart', cartRoute)
 app.use('/api/enrolled', enrollRoute)
-
+app.use('/api/completed', completedRoute)
 // Open on port process.env.PORT or 5000
 const port = process.env.PORT || 5000
 
