@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import './searchstyles.css';
 
+
 // We can inject some CSS into the DOM.
 const styles = {
 	root: {
@@ -152,6 +153,7 @@ class SearchResults extends Component {
 			});
 		}
 
+		
 		return (
 			<div className={classes.root}>
 				<div className='courseOptionsArea'>
@@ -162,11 +164,13 @@ class SearchResults extends Component {
                             classes.regularCard : classes.clickedCard;
 
 							return (
-								<Card className={classes.cards}>
+								
+								<Card key={index} className={classes.cards}>
 									<ButtonBase
 										onClick={this.handleCheckboxChange.bind(this, item, index)}
 										className={cardClassName}
 									>
+									
 										<CardContent>
 											<Typography className={classes.title} variant='h4'>
 												{item.name}
