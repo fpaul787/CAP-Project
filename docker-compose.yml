@@ -6,12 +6,16 @@ services:
       - '3000:3000'
     depends_on:
       - backend
+    volumes: # important! allows the changes in your react app to be reflected in container
+      - ./frontend:/usr/src/app
   backend:
     build: ./backend
     ports:
       - '5000:5000'
     depends_on:
       - mongo
+    volumes:
+      - ./backend:/usr/src/app
   mongo:
     image: mongo
     ports:

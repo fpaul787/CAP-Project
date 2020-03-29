@@ -32,11 +32,11 @@ class ShoppingCart extends Component {
 
     getCourses(){
         
-        fetch('/api/courses')
+        fetch('http://localhost:5000/api/courses')
         .then(results => results.json())
         .then(results => this.setState({'totalCourses': results.data}));
         
-        fetch('/api/cart')
+        fetch('http://localhost:5000/api/cart')
         .then(results => results.json())
         .then(results => this.setState({'chosenCourses': results.data, loaded: true}));
 
@@ -83,7 +83,7 @@ class ShoppingCart extends Component {
                 "courseID" : this.state.checkedCoursesObjects[i].courseID
             });
 
-            fetch('/api/enrolled', {
+            fetch('http://localhost:5000/api/enrolled', {
                 method: 'POST',
                 body: JSON.stringify(submissiondata),
                 headers: {
@@ -101,7 +101,7 @@ class ShoppingCart extends Component {
 
 
     render() {
-        if (this.state.loaded != true){
+        if (this.state.loaded !== true){
             return <div style={{marginLeft: '35%', marginTop: '10%'}}>Loading...</div>
         }
 
@@ -134,11 +134,12 @@ class ShoppingCart extends Component {
                         for (let i = 0; i < this.state.chosenCourses.length; i++){
                             if (item._id === this.state.chosenCourses[i].courseID){
                                 return <Card
-                                border="secondary"
-                        
-                                style={{ width: '30%', float: 'left', margin: '15px'}}
-                            >
-                                <Card.Header><Card.Title>{item.name}</Card.Title></Card.Header>
+                                border="secondary"                        
+                                style={{ width: '30%', float: 'left', margin: '15px'}}>
+                                <Card.Header>
+                                    <Card.Title>{item.name}
+                                        </Card.Title>
+                                </Card.Header>
                                 <Card.Body>
                                 
                                 <Card.Text>
@@ -157,7 +158,11 @@ class ShoppingCart extends Component {
                                 
                             </Card>
                             }
+                            else{
+                                return <h1>Fix shopping cart later</h1>
+                            }
                         }
+                        return <h1>Another Day</h1>
                 }, this)}
                 </div>
                 

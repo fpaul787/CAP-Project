@@ -122,10 +122,11 @@ class SearchForClasses extends Component {
     }
 
     componentDidMount(){
-        fetch('/api/completed')
+        fetch('http://localhost:5000/api/completed')
         .then(results => results.json())
         .then(results => this.setState({'completedCourses': results.data[0], loaded: true})); 
         
+         
     }
 
     handleClick(index){
@@ -133,9 +134,22 @@ class SearchForClasses extends Component {
         // We might need to change data so that each course object
         // can have a unique number. That way, we can have an array
         // of course numbers and remove them when necessary.
-        this.state.courses[index].selected = !this.state.courses[index].selected;       
-        this.state.queryCourses.push(this.state.courses[index]);   
         
+        //this.state.courses[index].selected = !this.state.courses[index].selected;
+        
+        var courses = this.state.courses
+        courses[index].selected = !courses[index].selected
+        
+
+        this.setState({courses: courses})      
+        
+        
+        var queryCourses = this.state.courses.filter(function(course) {
+            return course.selected !== false
+        })
+
+       
+        this.setState({queryCourses: queryCourses})       
     }
 
     checkColor(index){
@@ -146,7 +160,7 @@ class SearchForClasses extends Component {
         }
     }
 
-
+ 
     flowLogic(){
         //Working from the bottom up:
         
@@ -373,7 +387,7 @@ class SearchForClasses extends Component {
 
         if (this.state.loaded === true) {
             this.flowLogic();
-        console.log(this.state.defaultFlowChartColors[0]);
+        
         return (
             <div>
                 <div style={{padding: '30px', position: 'relative'}}>

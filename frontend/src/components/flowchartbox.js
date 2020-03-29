@@ -19,7 +19,7 @@ class FlowChartBox extends Component {
 
     componentDidMount(){
         //default color logic:
-        if (this.props.default != ""){
+        if (this.props.default !== ""){
             this.setState({
                 selectionColor: {  
                     position: 'absolute', 

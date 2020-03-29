@@ -23,11 +23,11 @@ class MySchedule extends Component {
 
     getCourses(){
         
-        fetch('/api/courses')
+        fetch('http://localhost:5000/api/courses')
         .then(results => results.json())
         .then(results => this.setState({'totalCourses': results.data}));
         
-        fetch('/api/enrolled')
+        fetch('http://localhost:5000/api/enrolled')
         .then(results => results.json())
         .then(results => this.setState({'chosenCourses': results.data, loaded: true}));
 

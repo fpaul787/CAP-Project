@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
-import {Card} from 'react-bootstrap';
 import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import Card  from '@material-ui/core/Card';
+import { CardContent } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography';
 
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import '../styles/flowstyles.css';
+
 
 
 const courseNames = ["Calculus I", "Natural Science I", "Natural Science II", "Programming I", "Introduction to Computing",
@@ -11,9 +17,59 @@ const courseNames = ["Calculus I", "Natural Science I", "Natural Science II", "P
                         "Technology in the Global Arena", "Physics II", "Computer Architecture", "Data Structures", "Software Engineering I",
                         "Statistics", "Operating Systems", "Systems Programming", "Senior Project"]
 
-const Checkbox = props => (
-                            <input type="checkbox" {...props} />
-                          );
+// const Checkbox = props => (
+//                             <input type="checkbox" {...props} />
+//                           );
+
+// We can inject some CSS into the DOM.
+const styles = {
+    root: {           
+        flexGrow: 1
+      },
+    
+    cards: {
+        background: "lightgray",
+        marginTop: 20 ,
+        marginRight: 20,        
+        width: 400,
+        height: 175,
+        paddingLeft: 1
+        
+    },
+      
+      title: {
+        fontSize: 30,
+      },
+
+      checkbox: {
+          paddingLeft: 1,
+         
+      },
+      cardAction: {
+        display: 'block',
+        textAlign: 'initial',
+        width: 400,
+        height: 175,
+      },
+
+      clickedCard : {
+        background: "red",
+        
+        display: 'block',
+        textAlign: 'initial',
+        width: 400,
+        height: 175,
+      },
+      
+      regularCard: {
+        
+        display: 'block',
+        textAlign: 'initial',
+        width: 400,
+        height: 175,
+      }
+      
+  };
 
 class SearchResults extends Component {
     
@@ -24,32 +80,53 @@ class SearchResults extends Component {
             'courses': [],
             'query': [],
             'chosenClasses': [],
-            courseCount: 0
+            courseCount: 0,
+            'selected': [],
+            'shownCourse': []
         }
     }
 
     componentDidMount () {
+        
         this.getCourses()
         
-        const handle = this.props.location.state.query       
         
-        for (let i = 0; i < handle.length; i++){
-            if (handle[i].selected === true){
-                this.state.query.push(handle[i].name)
-            }
-        }            
+        const coursesSelected = this.props.location.state.query       
+        
+        
+        for (let i = 0; i < coursesSelected.length; i++){
+            
+                this.state.query.push(coursesSelected[i])                    
+            
+        }       
+        
       }
 
 
     getCourses(){  
 
-        fetch('/api/courses')
+        fetch('http://localhost:5000/api/courses')
         .then(results => results.json())
-        .then(results => this.setState({'courses': results.data}));        
+        .then(results => this.setState({'courses': results.data}) )
+        .then(_ => {
+            this.state.courses.map((item, index) => {
+
+                for (let i = 0; i < this.state.query.length; i++){
+                    if (item.name === this.state.query[i].name){
+                        this.state.shownCourse.push(item)
+                        this.state.selected[index] = false
+                    }
+                }
+                
+            })
+        })
+                
     
+        
     }
 
-    handleCheckboxChange(course){
+    handleCheckboxChange(course, itemIndex){
+        
         // remove if exists
         if (this.state.chosenClasses.includes(course._id)){
             var index = this.state.chosenClasses.indexOf(course._id);
@@ -62,6 +139,10 @@ class SearchResults extends Component {
             this.setState({courseCount: this.state.courseCount+1});
         }
 
+        
+       this.state.selected[itemIndex] = !this.state.selected[itemIndex]
+        
+        
     }
     
     addToCart(){
@@ -71,7 +152,7 @@ class SearchResults extends Component {
                 "courseID" : this.state.chosenClasses[i]
             });
 
-            fetch('/api/cart', {
+            fetch('http://localhost:5000/api/cart', {
                 method: 'POST',
                 body: JSON.stringify(submissiondata),
                 headers: {
@@ -93,7 +174,7 @@ class SearchResults extends Component {
                 "courseID" : this.state.chosenClasses[i]
             });
 
-            fetch('/api/enrolled', {
+            fetch('http://localhost:5000/api/enrolled', {
                 method: 'POST',
                 body: JSON.stringify(submissiondata),
                 headers: {
@@ -106,44 +187,58 @@ class SearchResults extends Component {
 
         }
     }
-
+    
     render() {
+
+        const {classes} = this.props
+        
+        
         return (
-            <div>
-            <div style={{border: '1px solid grey', padding: '30px', overflowY: 'scroll', height: '720px', padding: '20px', marginLeft: '50px', marginRight: '50px', marginTop: '20px'}}>,
+            <div className={classes.root}>
+            <div style={
+                {border: '1px solid grey', 
+                padding: '30px', 
+                overflowY: 'scroll', 
+                height: '720px', 
+                padding: '20px', 
+                marginLeft: '50px', 
+                marginRight: '50px', 
+                marginTop: '20px'}}>,
+                <Grid container direction={'row'} spacing={3} >
                 {this.state.courses.map(function(item, index) {
-                    for (let i = 0; i < 20; i++){
-                        if (item.name === this.state.query[i]){
-                            return <Card
-                            border="secondary"
-                    
-                            style={{ width: '30%', float: 'left', margin: '15px'}}
-                          >
-                            <Card.Header><Card.Title>{item.name}</Card.Title></Card.Header>
-                            <Card.Body>
-                              
-                              <Card.Text>
-                                <p style={{textIndent: '30px', float: 'left'}}>{item.hour}</p>
-                                <label>
-                                    <Checkbox style={{float: 'right', position: 'absolute', right: '0', marginRight: '30px', width: '25px', height: '25px'}}
-                                        
-                                        onClick={this.handleCheckboxChange.bind(this, item)}
-                                    />
-                                    
-                                    </label>
-                              </Card.Text>
-                              
-                              
-                            </Card.Body>
+                   
+                    for (let i = 0; i < this.state.query.length; i++){
+                        if (item.name === this.state.query[i].name){
+
+
+                            let cardClassName = !this.state.selected[index] ? classes.regularCard : classes.clickedCard
                             
-                          </Card>
+                            return (
+                                <Card className={classes.cards}>
+                                <ButtonBase 
+                                onClick={this.handleCheckboxChange.bind(this, item, index )} 
+                                className={cardClassName}>
+
+
+                                <CardContent>
+                                    <Typography className={classes.title}  variant="h4">
+                                        {item.name}
+                                    </Typography>   
+                                    <Typography variant="body2" component="p">
+                                        {item.hour}
+                                    </Typography> 
+                                                                                             
+                                </CardContent>   
+                                </ButtonBase>                         
+                          </Card>)
                          }
                     }
             }, this)}
-            
+            </Grid>
              </div>
              
              <span style={{float: 'right', marginTop: '20px', marginRight: '50px'}}>
+             
              <strong style={{marginRight: '50px'}}>{this.state.courseCount} Classes Selected.</strong>
 
              <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Shopping Cart"}}}>
@@ -179,4 +274,4 @@ class SearchResults extends Component {
     }
 }
 
-export default SearchResults;
+export default withStyles(styles) (SearchResults)

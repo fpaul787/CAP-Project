@@ -25,13 +25,16 @@ class AppNavbar extends Component {
     
     render() {
         return (
-            <div>
+        <div>
             <Navbar color="dark" dark expend="sm" style={{marginBottom: '0'}}>
-                <Container>
-                    <Link to="/">
+                <Container>        
+                    
                     <NavbarBrand href="/">Redesign MyFIU Class Search</NavbarBrand>
-                    </Link>
+                    
+                    
                     <NavbarToggler onClick={this.toggle} />
+                    
+                     
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>

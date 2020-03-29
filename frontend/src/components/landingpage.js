@@ -23,7 +23,12 @@ class LandingPage extends Component {
 
     
     handleCheckboxChange(index){
-        this.state.takenArray[index] = !this.state.takenArray[index];
+
+        var takenArray = [...this.state.takenArray]
+
+        takenArray[index] = !takenArray[index]
+        // this.state.takenArray[index] = !this.state.takenArray[index];
+        this.setState({takenArray: takenArray})
         console.log(index, this.state.takenArray[index]);
 
     }
@@ -119,7 +124,7 @@ class LandingPage extends Component {
             <div>
                 <h2>Please select the courses you've already taken:</h2>
                 {courseNames.map((element, index) => {
-                    return <div style={{float: 'left', margin: '5px',width: '350px', height:'50px', border: '1px solid black', padding: '10px'}}>{element}
+                    return <div key={index} style={{float: 'left', margin: '5px',width: '350px', height:'50px', border: '1px solid black', padding: '10px'}}>{element}
                     <Checkbox style={{float: 'right', marginRight: '30px', width: '25px', height: '25px'}}             
                     onClick={this.handleCheckboxChange.bind(this, index)}
                 /></div>
