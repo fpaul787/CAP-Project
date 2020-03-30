@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
-<<<<<<< HEAD
-=======
 import {Logo} from '../img/logo.png';
->>>>>>> origin/manny
 
 const courseNames = ["Calculus I", "Natural Science I", "Natural Science II", "Programming I", "Introduction to Computing",
                         "Professional and Technical Writing","Calculus II", "Physics I",  "Discrete Math",  "Discrete Structures", "Programming II",
