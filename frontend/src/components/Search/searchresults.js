@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import './searchstyles.css';
+import './styles/searchstyles.css';
 
 
 // We can inject some CSS into the DOM.
