@@ -9,6 +9,8 @@ import DropClasses from './Classes/dropclasses';
 import BrowseCatalog from './Catelog/browsecatalog';
 import LandingPage from './landingpage';
 import Success from './Search/success';
+import InitializePage from './initialize';
+import SemesterCourses from './Classes/semestercourses';
 
 
 const Main = () => {
@@ -23,6 +25,8 @@ const Main = () => {
             <Route path="/browsecatalog" component={BrowseCatalog} />
             <Route path="/searchresults" component={SearchResults}/>
             <Route path="/success" component={Success}/>
+            <Route path="/initialize" component={InitializePage} />
+            <Route path="/semestercourses" component={SemesterCourses} />
            
         </Switch>
     )

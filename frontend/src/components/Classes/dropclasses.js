@@ -67,6 +67,18 @@ class DropClasses extends Component {
         }
     }
 
+    dropCourse(ID){
+       
+        axios.delete(`http://localhost:5000/api/enrolled/` + ID)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        });
+
+        window.location.reload();
+    
+}
+
     render() {
 
         if (this.state.loaded != true){
@@ -112,6 +124,8 @@ class DropClasses extends Component {
                               
                               <Card.Text>
                                 <p style={{textIndent: '30px', float: 'left'}}>{item.hour}</p>
+                                <Button onClick={this.dropCourse.bind(this, this.state.enrolledCourses[i]._id)} color="danger" style={{float: 'right', marginRight: '20%'}}>Delete</Button>
+
                                 <label>
                                     <Checkbox style={{float: 'right', position: 'absolute', right: '0', marginRight: '30px', width: '25px', height: '25px'}}
                                         
@@ -142,6 +156,20 @@ class DropClasses extends Component {
                     Drop Courses
                 </Button>
             </Link>
+            <Button 
+                            
+                            
+                            color="warning" 
+                            style={
+                                {
+                                    paddingLeft: '60px', 
+                                    paddingRight: '60px',
+                                    height: '40px',
+                                    width: '200px',
+                                    marginLeft: '10%',
+                                }}>
+                            Select All
+                        </Button>
              </div>
              </div>
         );

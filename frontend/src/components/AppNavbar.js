@@ -50,24 +50,28 @@ class AppNavbar extends Component {
            
             <div style={{background: '#eee', border: "1px solid grey", width:'15%',marginTop: '0', height: '100%', position: 'absolute', float: 'left', overflow: 'hidden'}}>
                 <Link to="/searchforclasses">
-                    <Button outline style={{width:'100%', height:'65px'}}color="secondary">Search for Classes</Button> 
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Search for Classes</Button> 
                 </Link>
                 <Link to="/viewmyclasses">
-                    <Button outline style={{width:'100%', height:'65px'}}color="secondary">View My Classes</Button>
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">View My Classes</Button>
                 </Link>
                 <Link to="/shoppingcart">
-                    <Button outline style={{width:'100%', height:'65px'}}color="secondary">Shopping Cart</Button>
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Shopping Cart</Button>
                 </Link>
                 <Link to="/myschedule">
-                    <Button outline style={{width:'100%', height:'65px'}}color="secondary">My Schedule</Button>
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">My Schedule</Button>
                 </Link>
                 <Link to="/dropclasses">
-                    <Button outline style={{width:'100%', height:'65px'}}color="secondary">Drop Classes</Button>
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Drop Classes</Button>
                 </Link>
                 <Link to="/browsecatalog">
-                    <Button outline style={{width:'100%', height:'65px'}}color="secondary">Browse Catalog</Button>
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Browse Catalog</Button>
+                </Link>
+                <Link to="/initialize">
+                    <Button color="warning"  style={{margin: '10%', width:'80%', height:'50px'}}>Initialize Classes</Button>
                 </Link>
             </div>
+            
         </div>
         );
         

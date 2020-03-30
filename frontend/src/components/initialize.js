@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
-<<<<<<< HEAD
-=======
-import {Logo} from '../img/logo.png';
->>>>>>> origin/manny
 
 const courseNames = ["Calculus I", "Natural Science I", "Natural Science II", "Programming I", "Introduction to Computing",
                         "Professional and Technical Writing","Calculus II", "Physics I",  "Discrete Math",  "Discrete Structures", "Programming II",
@@ -14,9 +10,8 @@ const courseNames = ["Calculus I", "Natural Science I", "Natural Science II", "P
 const Checkbox = props => (
                             <input type="checkbox" {...props} />
                           );
-class LandingPage extends Component {
+class InitializePage extends Component {
     
-<<<<<<< HEAD
     constructor(){
         super();
 
@@ -121,16 +116,10 @@ class LandingPage extends Component {
         console.error('Error:', error);
         });
     }
-=======
-
-
-    
->>>>>>> origin/manny
     
     render() {
 
         
-<<<<<<< HEAD
         return (
             <div>
                 <h2>Please select the courses you've already taken:</h2>
@@ -148,31 +137,10 @@ class LandingPage extends Component {
                     </Link>
                 </div>
              </div>
-=======
-        return (<div>
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: '5%'}}>
-                        <h3>Welcome to RedesignMyFIUClassSearch!</h3>
-                    </div>
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: '0%'}}>
-                        <img src={require('../img/logo.png')} />
-                    </div>
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: '0%'}}>
-                        <h4>Please click 'Initialize' to tailor the testing environment to your courses.</h4>
-                    </div>
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: '0%'}}>
-                        <Link to="/initialize">
-                        <Button color="success">
-                            Initialize
-                        </Button>
-                        </Link>
-                        </div>
-                    
-                </div>
->>>>>>> origin/manny
         );
         
         
     }
 }
 
-export default LandingPage;
+export default InitializePage;

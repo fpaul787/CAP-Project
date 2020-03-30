@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Button} from 'reactstrap';
 import axios from 'axios';
+import { IoMdTrash } from "react-icons/io";
 
 const Checkbox = props => (
     <input type="checkbox" {...props} />
@@ -76,6 +77,18 @@ class ShoppingCart extends Component {
         }
     }
 
+    removeCourse(ID){
+       
+            axios.delete(`http://localhost:5000/api/cart/` + ID)
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+            });
+
+            window.location.reload();
+        
+    }
+
     enrollInCourses(){
 
         for (let i = 0; i < this.state.checkedCoursesObjects.length; i++){
@@ -97,6 +110,12 @@ class ShoppingCart extends Component {
 
         this.removeCourses();
         
+    }
+
+    selectAll(){
+        for (let i = 0; i < this.state.chosenCourses.length; i++){
+            this.handleCheckboxChange(this.state.chosenCourses[i]);
+        }
     }
 
 
@@ -144,7 +163,9 @@ class ShoppingCart extends Component {
                                 
                                 <Card.Text>
                                     <p style={{textIndent: '30px', float: 'left'}}>{item.hour}</p>
+                                    <Button onClick={this.removeCourse.bind(this, this.state.chosenCourses[i]._id)} color="danger" style={{float: 'right', marginRight: '20%'}}>Delete</Button>
                                     <label>
+                                        
                                         <Checkbox style={{float: 'right', position: 'absolute', right: '0', marginRight: '30px', width: '25px', height: '25px'}}
                                             
                                             onClick={this.handleCheckboxChange.bind(this,this.state.chosenCourses[i])}
@@ -158,15 +179,25 @@ class ShoppingCart extends Component {
                                 
                             </Card>
                             }
+<<<<<<< HEAD:frontend/src/components/Shopping/shoppingcart.js
                             else{
                                 return <h1>Fix shopping cart later</h1>
                             }
                         }
                         return <h1>Another Day</h1>
+=======
+                        
+                        }
+                       
+>>>>>>> origin/manny:frontend/src/components/Shopping/shoppingcart.js
                 }, this)}
                 </div>
                 
                 <div style={{marginLeft: '25%'}}>
+<<<<<<< HEAD:frontend/src/components/Shopping/shoppingcart.js
+=======
+                    
+>>>>>>> origin/manny:frontend/src/components/Shopping/shoppingcart.js
                     <Link style={{float:'left'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
                         <Button 
                             
@@ -199,7 +230,22 @@ class ShoppingCart extends Component {
                             Enroll
                         </Button>
                     </Link>
+                    <Button 
+                            
+                            onClick={this.selectAll.bind(this)}
+                            color="warning" 
+                            style={
+                                {
+                                    paddingLeft: '60px', 
+                                    paddingRight: '60px',
+                                    height: '40px',
+                                    width: '200px',
+                                    marginLeft: '10%',
+                                }}>
+                            Select All
+                        </Button>
                 </div>
+                
              </div>
         );
         

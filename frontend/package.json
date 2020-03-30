@@ -15,6 +15,10 @@
 		"nodemon": "^2.0.2",
 		"react": "^16.13.0",
 		"react-dom": "^16.13.0",
+<<<<<<< HEAD
+=======
+		"react-icons": "^3.9.0",
+>>>>>>> origin/manny
 		"react-router-dom": "^5.1.2",
 		"react-transition-group": "^4.3.0",
 		"reactstrap": "^8.4.1",
@@ -31,8 +35,21 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
+<<<<<<< HEAD
 		"production": [ ">0.2%", "not dead", "not op_mini all" ],
 		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+=======
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+>>>>>>> origin/manny
 	},
 	"devDependencies": {
 		"react-bootstrap": "^1.0.0",
