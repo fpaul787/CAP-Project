@@ -2,5 +2,9 @@ indexTest.html
 node_modules/
 .vscode/
 .env
+.lock
+data-node/
 
 
+dockercompose.1.txt
+Tasks.txt
