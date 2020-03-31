@@ -10,9 +10,19 @@ class Success extends Component {
 
         let link; 
         let message;
-
+        let courses
+        if(this.props.location.state.selected != undefined){
+            courses = this.props.location.state.selected.map(course => {
+                return <h1>Course ID: {course}</h1>
+             })
+        }else{
+            courses = ( <h1></h1>)
+        }
+        
+        
         if (this.props.location.state.type === "Shopping Cart"){
-            message = "Successfully added to cart.";
+            message = "The following class have been successfully added to cart.";
+           
             link = <div>
                 <Link to="/shoppingcart">
                 <Button 
@@ -76,12 +86,14 @@ class Success extends Component {
         return (
             <div style={{marginLeft: '20%', marginTop: '10%'}}>
                 <h3>{message}</h3>
-                {link}
+                {courses}
+                {link}                
              </div>
         );
         
         
     }
 }
+
 
 export default Success;

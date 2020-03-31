@@ -149,12 +149,8 @@ class SearchForClasses extends Component {
         })
 
        
-<<<<<<< HEAD
-        this.setState({queryCourses: queryCourses})       
-=======
         this.setState({queryCourses: queryCourses})  
         console.log(this.state.queryCourses);     
->>>>>>> origin/manny
     }
 
     checkColor(index){

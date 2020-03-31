@@ -25,11 +25,14 @@ class InitializePage extends Component {
     handleCheckboxChange(index){
 
         var takenArray = [...this.state.takenArray]
-
+        
         takenArray[index] = !takenArray[index]
+        
         // this.state.takenArray[index] = !this.state.takenArray[index];
-        this.setState({takenArray: takenArray})
-        console.log(index, this.state.takenArray[index]);
+        this.setState({takenArray: takenArray}, () => {
+            this.initalize()
+        })
+        
 
     }
 
@@ -68,7 +71,7 @@ class InitializePage extends Component {
             
             .then((response) => response.json())
             .then((result) => {
-            console.log('Success:', result);
+            console.log('Success Initialize:', result);
             })
             .catch((error) => {
             console.error('Error:', error);

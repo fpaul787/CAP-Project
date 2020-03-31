@@ -49,6 +49,9 @@ class AppNavbar extends Component {
             </Navbar>
            
             <div style={{background: '#eee', border: "1px solid grey", width:'15%',marginTop: '0', height: '100%', position: 'absolute', float: 'left', overflow: 'hidden'}}>
+                <Link to="/">
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Home</Button> 
+                </Link>
                 <Link to="/searchforclasses">
                     <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Search for Classes</Button> 
                 </Link>

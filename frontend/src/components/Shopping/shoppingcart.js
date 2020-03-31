@@ -3,7 +3,7 @@ import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Button} from 'reactstrap';
 import axios from 'axios';
-import { IoMdTrash } from "react-icons/io";
+
 
 const Checkbox = props => (
     <input type="checkbox" {...props} />
@@ -179,25 +179,14 @@ class ShoppingCart extends Component {
                                 
                             </Card>
                             }
-<<<<<<< HEAD:frontend/src/components/Shopping/shoppingcart.js
-                            else{
-                                return <h1>Fix shopping cart later</h1>
-                            }
-                        }
-                        return <h1>Another Day</h1>
-=======
                         
                         }
                        
->>>>>>> origin/manny:frontend/src/components/Shopping/shoppingcart.js
                 }, this)}
                 </div>
                 
                 <div style={{marginLeft: '25%'}}>
-<<<<<<< HEAD:frontend/src/components/Shopping/shoppingcart.js
-=======
                     
->>>>>>> origin/manny:frontend/src/components/Shopping/shoppingcart.js
                     <Link style={{float:'left'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
                         <Button 
                             
