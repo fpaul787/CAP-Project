@@ -11,6 +11,8 @@ import {
     Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import './styles/flowstyles.css';
+
 
 class AppNavbar extends Component {
         state = {
@@ -29,12 +31,13 @@ class AppNavbar extends Component {
             <Navbar color="dark" dark expend="sm" style={{marginBottom: '0'}}>
                 <Container>        
                     
-                    <NavbarBrand href="/">Redesign MyFIU Class Search</NavbarBrand>
+                    <Link to='/' style={{ textDecoration: 'none', marginLeft: '40%' }}>
+                        <h4 className="title"> Redesign MyFIU Class Search</h4>
+                    </Link>
                     
                     
+                    {/** Fix #58 
                     <NavbarToggler onClick={this.toggle} />
-                    
-                     
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
@@ -45,12 +48,15 @@ class AppNavbar extends Component {
                             </NavItem>
                         </Nav>
                     </Collapse>
+                    */}
                 </Container>
+                
             </Navbar>
            
             <div style={{background: '#eee', border: "1px solid grey", width:'15%',marginTop: '0', height: '100%', position: 'absolute', float: 'left', overflow: 'hidden'}}>
                 <Link to="/searchforclasses">
-                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Search for Classes</Button> 
+                    {/** Fix #23 */}
+                    <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Search My Major FlowChart</Button> 
                 </Link>
                 <Link to="/viewmyclasses">
                     <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">View My Classes</Button>
@@ -64,7 +70,7 @@ class AppNavbar extends Component {
                 <Link to="/dropclasses">
                     <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Drop Classes</Button>
                 </Link>
-                <Link to="/browsecatalog">
+                <Link to='/browsecatalog'>
                     <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Browse Catalog</Button>
                 </Link>
                 <Link to="/initialize">

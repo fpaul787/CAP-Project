@@ -12,7 +12,8 @@ class Success extends Component {
         let message;
 
         if (this.props.location.state.type === "Shopping Cart"){
-            message = "Successfully added to cart.";
+        {/** Fix #28 */}
+            message = "Courses successfully added to your shopping cart.";
             link = <div>
                 <Link to="/shoppingcart">
                 <Button 
@@ -21,10 +22,23 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '15%'}}>
+                        marginLeft: '3%'}}>
                     View Shopping Cart
                 </Button>
-            </Link>
+                 </Link>
+
+                {/** Fix #29 */}
+                 <Link to="/searchforclasses" style={{marginLeft: '10px'}}>
+                    <Button 
+                        color="success" 
+                        style={
+                            {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px'
+                        }}>
+                        Search for More Classes
+                    </Button>
+                 </Link>
             </div>
         } else if (this.props.location.state.type === "Schedule"){
             message = "Courses successfully added to your schedule.";
@@ -36,10 +50,22 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '15%'}}>
+                        marginLeft: '3%'}}>
                     View Schedule
                 </Button>
             </Link>
+            {/** Fix #29 */}
+            <Link to="/searchforclasses" style={{marginLeft: '10px'}}>
+                    <Button 
+                        color="success" 
+                        style={
+                            {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px'
+                        }}>
+                        Search for More Classes
+                    </Button>
+                 </Link>
             </div>
         } else if (this.props.location.state.type === "Removed from Cart"){
             message = "Courses successfully removed from Shopping Cart.";
@@ -51,10 +77,22 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '15%'}}>
+                        marginLeft: '3%'}}>
                     View Shopping Cart
                 </Button>
             </Link>
+            {/** Fix #29 */}
+            <Link to="/searchforclasses" style={{marginLeft: '10px'}}>
+                    <Button 
+                        color="success" 
+                        style={
+                            {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px'
+                        }}>
+                        Search for More Classes
+                    </Button>
+                 </Link>
             </div>
         } else if (this.props.location.state.type === "Dropped"){
             message = "Courses successfully removed from your schedule.";
@@ -66,10 +104,22 @@ class Success extends Component {
                         {
                         paddingLeft: '60px', 
                         paddingRight: '60px',
-                        marginLeft: '15%'}}>
+                        marginLeft: '3%'}}>
                     View Schedule
                 </Button>
             </Link>
+            {/** Fix #29 */}
+            <Link to="/dropclasses" style={{marginLeft: '10px'}}>
+                    <Button 
+                        color="danger" 
+                        style={
+                            {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px'
+                        }}>
+                        Drop More Classes
+                    </Button>
+                 </Link>
             </div>
         }
 

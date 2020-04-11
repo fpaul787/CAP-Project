@@ -59,8 +59,8 @@ class ShoppingCart extends Component {
             this.state.checkedCoursesID.push(courseID._id);
             this.state.checkedCoursesObjects.push(courseID);
         }
-
-        console.log(this.state.checkedCourses);
+        // state update
+        this.setState({checkedCoursesID: this.state.checkedCoursesID});
 
     }
 
@@ -120,6 +120,117 @@ class ShoppingCart extends Component {
 
 
     render() {
+
+        let renderButtons;
+
+        {/** Fix #26/27, if no classes selected, opacity 50% */}
+        if (this.state.checkedCoursesID.length < 1){
+            renderButtons = <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>  
+           <Link style={{float:'left', marginRight: '10px'}}>
+                <Button 
+                    
+                    onClick={this.removeCourses.bind(this)}
+                    color="danger" 
+                    style={
+                        {
+                            opacity: '50%',
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                            
+                            
+                            }}>
+                    Remove From Cart
+                </Button>
+            </Link>
+            <Link style={{marginRight: '10px'}}>
+                <Button 
+                    
+                    onClick={this.enrollInCourses.bind(this)}
+                    color="success" 
+                    style={
+                        {
+                            opacity: '50%',
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                           
+                            
+                        }}>
+                    Enroll
+                </Button>
+            </Link>
+            {/** Fix #31 */}
+                <Button 
+                    
+                    onClick={this.selectAll.bind(this)}
+                    color="warning" 
+                    style={
+                        {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                            
+                        }}>
+                    Select All
+                </Button>
+        </div>
+        } else {
+            renderButtons = 
+            <div>
+            <Link style={{float:'left', marginRight: '10px'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
+                <Button 
+                    
+                    onClick={this.removeCourses.bind(this)}
+                    color="danger" 
+                    style={
+                        {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                            
+                            }}>
+                    Remove From Cart
+                </Button>
+            </Link>
+            <Link style={{marginRight: '10px'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Schedule"}}}>
+                <Button 
+                    
+                    onClick={this.enrollInCourses.bind(this)}
+                    color="success" 
+                    style={
+                        {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                            
+                        }}>
+                    Enroll
+                </Button>
+            </Link>
+            {/** Fix #31 */}
+            <Button 
+                    
+                    onClick={this.selectAll.bind(this)}
+                    color="warning" 
+                    style={
+                        {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                           
+                        }}>
+                    Select All
+                </Button>
+        </div>
+        }
+
         if (this.state.loaded !== true){
             return <div style={{marginLeft: '35%', marginTop: '10%'}}>Loading...</div>
         }
@@ -163,7 +274,10 @@ class ShoppingCart extends Component {
                                 
                                 <Card.Text>
                                     <p style={{textIndent: '30px', float: 'left'}}>{item.hour}</p>
-                                    <Button onClick={this.removeCourse.bind(this, this.state.chosenCourses[i]._id)} color="danger" style={{float: 'right', marginRight: '20%'}}>Delete</Button>
+                                    {/** Fix #24
+                                     *  <Button onClick={this.removeCourse.bind(this, this.state.chosenCourses[i]._id)} color="danger" style={{float: 'right', marginRight: '20%'}}>Delete</Button>
+                                     */
+                                    }
                                     <label>
                                         
                                         <Checkbox style={{float: 'right', position: 'absolute', right: '0', marginRight: '30px', width: '25px', height: '25px'}}
@@ -184,57 +298,8 @@ class ShoppingCart extends Component {
                        
                 }, this)}
                 </div>
-                
-                <div style={{marginLeft: '25%'}}>
-                    
-                    <Link style={{float:'left'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
-                        <Button 
-                            
-                            onClick={this.removeCourses.bind(this)}
-                            color="danger" 
-                            style={
-                                {
-                                    paddingLeft: '60px', 
-                                    paddingRight: '60px',
-                                    height: '60px',
-                                    width: '220px',
-                                    marginLeft: '40%',
-                                    }}>
-                            Remove From Cart
-                        </Button>
-                    </Link>
-                    <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Schedule"}}}>
-                        <Button 
-                            
-                            onClick={this.enrollInCourses.bind(this)}
-                            color="success" 
-                            style={
-                                {
-                                    paddingLeft: '60px', 
-                                    paddingRight: '60px',
-                                    height: '60px',
-                                    width: '220px',
-                                    marginLeft: '10%',
-                                }}>
-                            Enroll
-                        </Button>
-                    </Link>
-                    <Button 
-                            
-                            onClick={this.selectAll.bind(this)}
-                            color="warning" 
-                            style={
-                                {
-                                    paddingLeft: '60px', 
-                                    paddingRight: '60px',
-                                    height: '40px',
-                                    width: '200px',
-                                    marginLeft: '10%',
-                                }}>
-                            Select All
-                        </Button>
-                </div>
-                
+                {renderButtons}
+            
              </div>
         );
         

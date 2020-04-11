@@ -5,9 +5,71 @@ import {Link} from 'react-router-dom';
 
 
 const courseNames = ["Calculus I", "Natural Science I", "Natural Science II", "Programming I", "Introduction to Computing",
-                        "Professional and Technical Writing","Calculus II", "Physics I",  "Discrete Math",  "Discrete Structures", "Programming II",
-                        "Technology in the Global Arena", "Physics II", "Computer Architecture", "Data Structures", "Software Engineering I",
+                        "Technical Writing", "Calculus II", "Physics I",  "Discrete Math",  "Discrete Structures", "Programming II",
+                        "Technology Global Arena", "Physics II", "Computer Architecture", "Data Structures", "Software Engineering I",
                         "Statistics", "Operating Systems", "Systems Programming", "Senior Project"]
+                    
+const courses = [{name: "Calculus I",
+                    id: "MAC2311"
+                    },
+                {name: "Natural Science I",
+                   id: "NSE1"
+                  },
+                {name: "Natural Science II",
+                  id: "NSE2"
+                 },
+                {name: "Programming I",
+                 id: "COP2210"
+                },
+                {name: "Introduction to Computing",
+                  id: "CGS1920"
+                 },
+                {name: "Technical Writing",
+                 id: "ENC3214"
+                },
+                {name: "Calculus II",
+                  id: "MAC2312"
+                 },
+                 {name: "Physics I",
+                  id: "PHY2048"
+                 },
+                {name: "Discrete Math",
+                 id: "MAD2104"
+                },
+                {name: "Discrete Structures",
+                  id: "COT3100"
+                 },
+                {name: "Programming II",
+                 id: "COP3337"
+                },
+                {name: "Technology Global Arena",
+                  id: "CGS3095"
+                 },
+                 {name: "Physics II",
+                 id: "PHY2049"
+                },
+                {name: "Computer Architecture",
+                    id: "CDA3102"
+                    },
+                {name: "Data Structures",
+                   id: "COP3530"
+                  },
+                {name: "Software Engineering I",
+                  id: "CEN4010"
+                 },
+                {name: "Statistics",
+                 id: "STA3033"
+                },
+                {name: "Operating Systems",
+                    id: "COP4610"
+                    },
+                {name: "Systems Programming",
+                   id: "COP4338"
+                  },
+                {name: "Senior Project",
+                  id: "CIS4911"
+                 }
+                ]
 
 class BrowseCatalog extends Component {
         
@@ -125,11 +187,11 @@ class BrowseCatalog extends Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:5000/api/completed')
-        .then(results => results.json())
-        .then(results => this.setState({'completedCourses': results.data[0], loaded: true})); 
         
-
+            fetch('http://localhost:5000/api/completed')
+            .then(results => results.json())
+            .then(results => this.setState({'completedCourses': results.data[0], loaded: true})); 
+        
         
     }
     
@@ -137,45 +199,47 @@ class BrowseCatalog extends Component {
 
         if (this.state.loaded === true){
             let obj = this.state.completedCourses;
-            
+            this.state.completedCount = 0;
             for (var key in obj) {
                 if (obj.hasOwnProperty(key)) {
                   if (obj[key] === true){
                     this.state.completedCount = this.state.completedCount +1;
-                }
+                    //this.setState({completedCount: this.state.completedCount+1});    
+                    }
                 }
               }
             
             let completionPercentage = (this.state.completedCount / 20)*100;
               
-        
+            
             return (
                 <div style={{width: '90%', margin: '1%'}}>
                      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Course Catalog and Degree Info</h2>
                      <ProgressBar animated now={completionPercentage} />
                                       <h3 style={{margin: '10px', display: 'flex',  justifyContent:'center', alignItems:'center'}}>{completionPercentage}% of Computer Science Degree Complete! </h3>
                                       <h4 style={{margin: '10px', display: 'flex',  justifyContent:'center', alignItems:'center'}}>{(100-completionPercentage)/5} Classes Remaining. </h4>
-                     {courseNames.map(function(item, index) {
+                     {courses.map(function(item, index) {
                          let personalArr = [];
                          personalArr.push(this.state.courses[index]);
-                         return <Card body style={{float: 'left', margin: '2%', width: '275px', height: '150px', padding: '10px'}}>
-                                    <CardTitle><strong>{item}</strong></CardTitle>
+                         
+                         return <Card body style={{float: 'left', margin: '2%', width: '200px', height: '150px', padding: '10px'}}>
+                                    <CardTitle><strong>{item.name}</strong></CardTitle>
                                     <CardText>Supporting details.</CardText>
                                     <Link to={{pathname: '/searchresults', state: {query: personalArr}}}>
                                         <Button 
                                     
                                         color="info" 
                                         style={
-                                            {width: '100px'}}>
-                                        Search All
+                                            {width: 'auto'}}>
+                                        Search All {item.id}
                                         </Button>
                                     </Link>
                                 </Card>
                          
             
-                     }, this)};
+                     }, this)}
                  </div>
-            );
+            )
         } else {
             return (<div>Loading...</div>);
         }
