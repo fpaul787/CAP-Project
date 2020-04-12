@@ -53,7 +53,9 @@ class DropClasses extends Component {
             
         }
 
-        console.log(this.state.checkedCourses);
+        // Forced state update
+        this.setState({checkedCourses: this.state.checkedCourses});
+        
     }
 
     dropCourses(){
@@ -80,6 +82,45 @@ class DropClasses extends Component {
 }
 
     render() {
+
+        let renderButtons;
+
+        if (this.state.checkedCourses.length < 1){
+            renderButtons =     
+            <Link style={{float:'left', marginLeft: '15px'}}>            
+                <Button 
+                    onClick={this.dropCourses.bind(this)}
+                    color="danger" 
+                    style={
+                        {
+                            opacity: '50%',
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px',
+                            }}>
+                    Drop Courses
+                </Button>
+                </Link>
+         
+        } else {
+            renderButtons = 
+            <Link style={{float:'left', marginLeft: '15px'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Dropped"}}}>
+                
+                <Button 
+                    onClick={this.dropCourses.bind(this)}
+                    color="danger" 
+                    style={
+                        {
+                            paddingLeft: '60px', 
+                            paddingRight: '60px',
+                            height: '60px',
+                            width: '220px'
+                            }}>
+                    Drop Courses
+                </Button>
+            </Link>
+        }
 
         if (this.state.loaded != true){
             return <div style={{marginLeft: '35%', marginTop: '10%'}}>Loading...</div>
@@ -124,7 +165,9 @@ class DropClasses extends Component {
                               
                               <Card.Text>
                                 <p style={{textIndent: '30px', float: 'left'}}>{item.hour}</p>
+                                {/** Fix number
                                 <Button onClick={this.dropCourse.bind(this, this.state.enrolledCourses[i]._id)} color="danger" style={{float: 'right', marginRight: '20%'}}>Delete</Button>
+                                */}
 
                                 <label>
                                     <Checkbox style={{float: 'right', position: 'absolute', right: '0', marginRight: '30px', width: '25px', height: '25px'}}
@@ -143,30 +186,17 @@ class DropClasses extends Component {
                     }
             }, this)}
              </div>
-             <div>
-                 <Link to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Dropped"}}}>
-                <Button 
-                    onClick={this.dropCourses.bind(this)}
-                    color="danger" 
-                    style={
-                        {
-                            paddingLeft: '60px', 
-                            paddingRight: '60px',
-                            marginLeft: '40%'}}>
-                    Drop Courses
-                </Button>
-            </Link>
+             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                 {renderButtons}
             <Button 
-                            
-                            
                             color="warning" 
                             style={
                                 {
                                     paddingLeft: '60px', 
                                     paddingRight: '60px',
-                                    height: '40px',
-                                    width: '200px',
-                                    marginLeft: '10%',
+                                    height: '60px',
+                                    width: '220px',
+                                    marginLeft: '15px'
                                 }}>
                             Select All
                         </Button>

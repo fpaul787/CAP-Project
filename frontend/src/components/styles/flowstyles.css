@@ -4,8 +4,15 @@
     cursor: pointer;
 }
 
-.class1 {
+.title {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
    
+    transition: all 0.1s ease-in-out;
+}
+
+.title:hover {
     
-    
+    color: rgba(100, 255, 216, 0.8);
+  
 }
