@@ -65,8 +65,13 @@ class FlowChartBox extends Component {
         // }
 
         if(this.props.colorProp === 'black'){
+            alert("You already took this class")
             return
-        } else {
+        } else if(this.props.colorProp === 'red'){
+            alert("You are missing the prerequisites for this class. Please talk to your advisor")
+            return
+        }
+        else {
             if (this.state.selected === true){
                 this.setState({
                     selectionColor: {  
