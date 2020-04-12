@@ -40,28 +40,55 @@ class FlowChartBox extends Component {
         this.setState({selected: !this.state.selected})
         
         
+        
+        // if (this.state.selected === true){
+        //     this.setState({
+        //         selectionColor: {  
+        //             position: 'absolute', 
+        //             top: this.props.top, 
+        //             left: this.props.left, 
+        //             width: this.props.width, 
+        //             height: this.props.height, 
+        //             backgroundColor: '#55ff77',
+        //             opacity: '0.5'}
+        //     });
+        // } else {
+        //     this.setState({
+        //         selectionColor: {  
+        //             position: 'absolute', 
+        //             top: this.props.top, 
+        //             left: this.props.left, 
+        //             width: this.props.width, 
+        //             height: this.props.height
+        //         }
+        //     });
+        // }
 
-        if (this.state.selected === true){
-            this.setState({
-                selectionColor: {  
-                    position: 'absolute', 
-                    top: this.props.top, 
-                    left: this.props.left, 
-                    width: this.props.width, 
-                    height: this.props.height, 
-                    backgroundColor: '#55ff77',
-                    opacity: '0.5'}
-            });
+        if(this.props.colorProp === 'black'){
+            return
         } else {
-            this.setState({
-                selectionColor: {  
-                    position: 'absolute', 
-                    top: this.props.top, 
-                    left: this.props.left, 
-                    width: this.props.width, 
-                    height: this.props.height
-                }
-            });
+            if (this.state.selected === true){
+                this.setState({
+                    selectionColor: {  
+                        position: 'absolute', 
+                        top: this.props.top, 
+                        left: this.props.left, 
+                        width: this.props.width, 
+                        height: this.props.height, 
+                        backgroundColor: '#55ff77',
+                        opacity: '0.5'}
+                });
+            } else {
+                this.setState({
+                    selectionColor: {  
+                        position: 'absolute', 
+                        top: this.props.top, 
+                        left: this.props.left, 
+                        width: this.props.width, 
+                        height: this.props.height
+                    }
+                });
+            }
         }
         
     }

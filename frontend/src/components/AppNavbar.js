@@ -28,7 +28,7 @@ class AppNavbar extends Component {
     render() {
         return (
         <div>
-            <Navbar color="dark" dark expend="sm" style={{marginBottom: '0'}}>
+            <Navbar  className="color-nav" expend="sm" style={{marginBottom: '0'}}>
                 <Container>        
                     
                     <Link to='/' style={{ textDecoration: 'none', marginLeft: '40%' }}>
@@ -77,7 +77,7 @@ class AppNavbar extends Component {
                     <Button outline style={{borderRadius: '0', width:'100%', height:'65px'}}color="secondary">Browse Catalog</Button>
                 </Link>
                 <Link to="/initialize">
-                    <Button color="warning"  style={{margin: '10%', width:'80%', height:'50px'}}>Initialize Classes</Button>
+                    <Button color="warning"  style={{margin: '10%', width:'80%', height:'50px'}}>Restart Class Search</Button>
                 </Link>
             </div>
             

@@ -121,12 +121,12 @@ class SearchForClasses extends Component {
         }
     }
 
-    componentDidMount(){
-        fetch('http://localhost:5000/api/completed')
+    async componentDidMount(){
+        await fetch('http://localhost:5000/api/completed')
         .then(results => results.json())
-        .then(results => this.setState({'completedCourses': results.data[0], loaded: true})); 
+        .then(results => this.setState({completedCourses: results.data[0], loaded: true}))
         
-         
+       
     }
 
     handleClick(index){
@@ -150,19 +150,26 @@ class SearchForClasses extends Component {
 
        
         this.setState({queryCourses: queryCourses})  
-        console.log(this.state.queryCourses);     
+         
     }
 
     checkColor(index){
+
+        //console.log(this.state.defaultFlowChartColors)
         if (this.state.selected[index] === true) {
             return '';
-        } else {
+        } 
+        else {
             return 'green';
         }
     }
 
  
+    
+
     flowLogic(){
+
+        
         //Working from the bottom up:
         
         // If SE not taken, Senior Proj red, index 19
@@ -381,41 +388,51 @@ class SearchForClasses extends Component {
         if (this.state.completedCourses.CIS4911 === true){
             this.state.defaultFlowChartColors[19]="black";
         }
+
+        
     }
 
 
+    
     render() {
 
+        
         if (this.state.loaded === true) {
+
+            
             this.flowLogic();
         
         return (
-            <div>
+            
+            <div >
+                <h2 style={{textAlign: 'center'}}>Select on the course(s) you wish to search for</h2>
                 <div style={{padding: '30px', position: 'relative'}}>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[0]} action={this.handleClick.bind(this,0)}   top={44}  left={41} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[1]} action={this.handleClick.bind(this,1)}   top={44}  left={175} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[2]} action={this.handleClick.bind(this,2)}   top={44}  left={308} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[3]} action={this.handleClick.bind(this,3)}   top={44}  left={690} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[4]} action={this.handleClick.bind(this,4)}   top={44}  left={840} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[5]} action={this.handleClick.bind(this,5)}   top={44}  left={974} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[6]} action={this.handleClick.bind(this,6)}   top={177} left={41} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[7]} action={this.handleClick.bind(this,7)}   top={177} left={175} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[8]} action={this.handleClick.bind(this,8)}   top={188} left={328} width={101} height={60}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[9]} action={this.handleClick.bind(this,9)}   top={188} left={469} width={93} height={58}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[10]} action={this.handleClick.bind(this,10)}  top={177} left={692} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[11]} action={this.handleClick.bind(this,11)}  top={177} left={974} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[12]} action={this.handleClick.bind(this,12)}  top={310} left={175} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[13]} action={this.handleClick.bind(this,13)}  top={310} left={424} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[14]} action={this.handleClick.bind(this,14)}  top={310} left={690} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[15]} action={this.handleClick.bind(this,15)}  top={310} left={974} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[16]} action={this.handleClick.bind(this,16)}  top={475} left={41} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[17]} action={this.handleClick.bind(this,17)}  top={475} left={424} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[18]} action={this.handleClick.bind(this,18)}  top={426} left={690} width={116} height={84}></FlowChartBox>
-                    <FlowChartBox default={this.state.defaultFlowChartColors[19]} action={this.handleClick.bind(this,19)}  top={475} left={974} width={116} height={84}></FlowChartBox> 
+                    <FlowChartBox  default={this.state.defaultFlowChartColors[0]} action={this.handleClick.bind(this,0)}   top={44}  left={41} width={116} height={84} colorProp={this.state.defaultFlowChartColors[0]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[1]} action={this.handleClick.bind(this,1)}   top={44}  left={175} width={116} height={84} colorProp={this.state.defaultFlowChartColors[1]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[2]} action={this.handleClick.bind(this,2)}   top={44}  left={308} width={116} height={84} colorProp={this.state.defaultFlowChartColors[2]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[3]} action={this.handleClick.bind(this,3)}   top={44}  left={690} width={116} height={84} colorProp={this.state.defaultFlowChartColors[3]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[4]} action={this.handleClick.bind(this,4)}   top={44}  left={840} width={116} height={84} colorProp={this.state.defaultFlowChartColors[4]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[5]} action={this.handleClick.bind(this,5)}   top={44}  left={974} width={116} height={84} colorProp={this.state.defaultFlowChartColors[5]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[6]} action={this.handleClick.bind(this,6)}   top={177} left={41} width={116} height={84} colorProp={this.state.defaultFlowChartColors[6]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[7]} action={this.handleClick.bind(this,7)}   top={177} left={175} width={116} height={84} colorProp={this.state.defaultFlowChartColors[7]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[8]} action={this.handleClick.bind(this,8)}   top={188} left={328} width={101} height={60} colorProp={this.state.defaultFlowChartColors[8]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[9]} action={this.handleClick.bind(this,9)}   top={188} left={469} width={93} height={58} colorProp={this.state.defaultFlowChartColors[9]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[10]} action={this.handleClick.bind(this,10)}  top={177} left={692} width={116} height={84} colorProp={this.state.defaultFlowChartColors[10]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[11]} action={this.handleClick.bind(this,11)}  top={177} left={974} width={116} height={84} colorProp={this.state.defaultFlowChartColors[11]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[12]} action={this.handleClick.bind(this,12)}  top={310} left={175} width={116} height={84} colorProp={this.state.defaultFlowChartColors[12]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[13]} action={this.handleClick.bind(this,13)}  top={310} left={424} width={116} height={84} colorProp={this.state.defaultFlowChartColors[13]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[14]} action={this.handleClick.bind(this,14)}  top={310} left={690} width={116} height={84}colorProp={this.state.defaultFlowChartColors[14]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[15]} action={this.handleClick.bind(this,15)}  top={310} left={974} width={116} height={84}colorProp={this.state.defaultFlowChartColors[15]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[16]} action={this.handleClick.bind(this,16)}  top={475} left={41} width={116} height={84}colorProp={this.state.defaultFlowChartColors[16]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[17]} action={this.handleClick.bind(this,17)}  top={475} left={424} width={116} height={84}colorProp={this.state.defaultFlowChartColors[17]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[18]} action={this.handleClick.bind(this,18)}  top={426} left={690} width={116} height={84}colorProp={this.state.defaultFlowChartColors[18]}></FlowChartBox>
+                    <FlowChartBox default={this.state.defaultFlowChartColors[19]} action={this.handleClick.bind(this,19)}  top={475} left={974} width={116} height={84}colorProp={this.state.defaultFlowChartColors[19]}></FlowChartBox> 
                     <img src={ require('../../img/flowchart.png') } alt="Flow Chart" />
+                    
                 </div>
                 
                 <Link to={{pathname: '/searchresults', state: {query: this.state.queryCourses}}}>
+                
                     <Button 
                    
                     color="success" 
@@ -427,9 +444,15 @@ class SearchForClasses extends Component {
                     Search
                     </Button>
                 </Link>
+                <h7 style={{color: 'red'}}>Red = <span style={{fontWeight: "bold"}}>Prerequisite Not Met</span></h7>
+                <h7> | </h7>
+                <h7 style={{color: 'grey'}}>Grey = <span style={{fontWeight: "bold"}}>Taken Already</span> </h7>
+                <h7> | </h7>
+                <h7 style={{color: '#ffc107'}}>Yellow = <span style={{fontWeight: "bold"}}>Can Take</span></h7>
             </div> 
         );
         } else {
+            
             return <div>Loading....</div>
         }
         

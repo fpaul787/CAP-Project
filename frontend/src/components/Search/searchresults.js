@@ -80,6 +80,7 @@ class SearchResults extends Component {
   }
 
   handleCheckboxChange(course, itemIndex) {
+    
     // remove if exists
     if (this.state.chosenClasses.includes(course._id)) {
       var index = this.state.chosenClasses.indexOf(course._id)
@@ -109,7 +110,7 @@ class SearchResults extends Component {
         },
       })
         .then(res => res.json())
-        .then(data => console.log(data))
+        // .then(data => console.log(data))
     }
   }
 
@@ -127,16 +128,18 @@ class SearchResults extends Component {
         },
       })
         .then(res => res.json())
-        .then(data => console.log(data))
+        // .then(data => console.log(data))
     }
   }
 
   render() {
+    
     const { classes } = this.props // styles object
 
     // courses user choose in searchforclasses
     const userCourses = this.props.location.state.query
 
+    
     // populate course options to show user
     // if it is unfilled, populate based on
     // if the name of the course item in
@@ -146,19 +149,25 @@ class SearchResults extends Component {
       this.state.courses.map(item => {
         for (let i = 0; i < userCourses.length; i++) {
           if (item.name === userCourses[i].name) {
+            console.log(item)
+          
+            
             this.state.courseOptions.push(item)
           }
         }
       })
     }
 
+    console.log(this.state.courseOptions)
     return (
+
+      
       <div className={classes.root}>
         <div className="courseOptionsArea">
           <h1>Click on Course to Select</h1>
           <Grid container direction={'row'} spacing={3}>
 
-            {this.state.courseOptions.map((item, index) => {
+            {this.state.courseOptions.map((courseItem, index) => {
 
 				// determines class of card based on if
 				// if was selected.
@@ -171,15 +180,18 @@ class SearchResults extends Component {
               return (
                 <Card key={index} className={classes.cards}>
                   <ButtonBase
-                    onClick={this.handleCheckboxChange.bind(this, item, index)}
+                    onClick={this.handleCheckboxChange.bind(this, courseItem, index)}
                     className={cardClassName}
                   >
                     <CardContent>
                       <Typography className={classes.title} variant="h4">
-                        {item.name}
+                        {courseItem.name}
                       </Typography>
                       <Typography variant="body2" component="p">
-                        {item.hour}
+                        {courseItem.hour}
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        Course Number: {courseItem.course_number}
                       </Typography>
                     </CardContent>
                   </ButtonBase>
