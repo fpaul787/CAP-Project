@@ -63,6 +63,7 @@ class SearchResults extends Component {
       courses: [],
       query: [],
       chosenClasses: [],
+      chosenClassNames: [],
       courseCount: 0,
       selected: [],
       courseOptions: [],
@@ -79,21 +80,33 @@ class SearchResults extends Component {
       .then(results => this.setState({ courses: results.data }))
   }
 
-  handleCheckboxChange(course, itemIndex) {
+  handleCheckboxChange(course, itemIndex, className) {
+
+    let tempArray = this.state.chosenClassNames;
+
     
+
     // remove if exists
     if (this.state.chosenClasses.includes(course._id)) {
       var index = this.state.chosenClasses.indexOf(course._id)
       if (index > -1) {
         this.state.chosenClasses.splice(index, 1)
       }
+
+      let nameIndex = tempArray.indexOf(className);
+      if (nameIndex > -1){
+        tempArray.splice(nameIndex, 1);
+      }
+
       this.setState({ courseCount: this.state.courseCount - 1 })
     } else {
       this.state.chosenClasses.push(course._id)
+      tempArray.push(className);
       this.setState({ courseCount: this.state.courseCount + 1 })
     }
 
     this.state.selected[itemIndex] = !this.state.selected[itemIndex]
+    this.setState({chosenClassNames: tempArray});
   }
 
   addToCart() {
@@ -134,6 +147,83 @@ class SearchResults extends Component {
 
   render() {
     
+    let addButtons;
+
+    if (this.state.courseCount < 1) {
+      addButtons =<div>
+       
+          <Button
+
+            color="primary"
+            style={{
+              opacity: '50%',
+              paddingLeft: '60px',
+              paddingRight: '60px',
+            }}
+          >
+            Add to Cart
+          </Button>
+   
+
+       
+            <Button
+              
+              color="success"
+              style={{
+                opacity: '50%',
+                paddingLeft: '60px',
+                paddingRight: '60px',
+                marginLeft: '15px',
+              }}
+            >
+              Enroll
+            </Button>
+        
+    </div>
+    } else {
+      addButtons =<div><Link
+      to={{
+        pathname: '/success',
+        state: {
+          selected: this.state.chosenClassNames,
+          type: 'Shopping Cart',
+        },
+      }}
+      >
+      <Button
+        onClick={this.addToCart.bind(this)}
+        color="primary"
+        style={{
+          paddingLeft: '60px',
+          paddingRight: '60px',
+        }}
+      >
+        Add to Cart
+      </Button>
+    </Link>
+
+    <Link
+      to={{
+        pathname: '/success',
+        state: { selected: this.state.chosenClassNames, type: 'Schedule' },
+      }}
+    >
+      <Button
+        onClick={this.addToEnrolled.bind(this)}
+        color="success"
+        style={{
+          paddingLeft: '60px',
+          paddingRight: '60px',
+          marginLeft: '15px',
+        }}
+      >
+        Enroll
+      </Button>
+    </Link>
+    </div>
+    }
+
+
     const { classes } = this.props // styles object
 
     // courses user choose in searchforclasses
@@ -180,7 +270,7 @@ class SearchResults extends Component {
               return (
                 <Card key={index} className={classes.cards}>
                   <ButtonBase
-                    onClick={this.handleCheckboxChange.bind(this, courseItem, index)}
+                    onClick={this.handleCheckboxChange.bind(this, courseItem, index, courseItem.name)}
                     className={cardClassName}
                   >
                     <CardContent>
@@ -205,46 +295,9 @@ class SearchResults extends Component {
           <strong style={{ marginRight: '50px' }}>
             {this.state.courseCount} Classes Selected.
           </strong>
-
-          <Link
-            to={{
-              pathname: '/success',
-              state: {
-                selected: this.state.chosenClasses,
-                type: 'Shopping Cart',
-              },
-            }}
-          >
-            <Button
-              onClick={this.addToCart.bind(this)}
-              color="primary"
-              style={{
-                paddingLeft: '60px',
-                paddingRight: '60px',
-              }}
-            >
-              Add to Cart
-            </Button>
-          </Link>
-
-          <Link
-            to={{
-              pathname: '/success',
-              state: { selected: this.state.chosenClasses, type: 'Schedule' },
-            }}
-          >
-            <Button
-              onClick={this.addToEnrolled.bind(this)}
-              color="success"
-              style={{
-                paddingLeft: '60px',
-                paddingRight: '60px',
-                marginLeft: '15px',
-              }}
-            >
-              Enroll
-            </Button>
-          </Link>
+          
+          {addButtons}
+          
         </span>
       </div>
     )
