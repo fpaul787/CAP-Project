@@ -177,7 +177,7 @@ class InitializePage extends Component {
           )
         })}
         <div style={{ float: 'right', margin: '50px', clear: 'both' }}>
-          <Link to="/searchforclasses">
+          <Link to={{pathname: '/success', state: {type: "Initialized"}}}>
             <Button
               onClick={this.setCourses.bind(this)}
               color="warning"
