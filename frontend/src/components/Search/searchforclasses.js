@@ -153,6 +153,7 @@ class SearchForClasses extends Component {
         
         //this.state.courses[index].selected = !this.state.courses[index].selected;
         
+        // if course is black or red, dont add to query courses
         if(this.state.defaultFlowChartColors[index] === 'black' 
             || this.state.defaultFlowChartColors[index] === 'red'){
                 return 
