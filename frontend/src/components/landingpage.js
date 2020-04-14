@@ -28,7 +28,7 @@ class LandingPage extends Component {
                         <img src={require('../img/logo.png')} />
                     </div>
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: '0%'}}>
-                        <h4>Please click 'Begin' to start course selection process.</h4>
+                        <h4>Please click 'Begin' to start the course selection process.</h4>
                     </div>
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: '0%'}}>
                         <Link to="/initialize">
