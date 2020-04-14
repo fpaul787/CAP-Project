@@ -117,6 +117,7 @@ class SearchForClasses extends Component {
             queryCourses: [],
             completedCourses: [],
             loaded: false,
+            processed: false,
             defaultFlowChartColors: [] //see logic method
         }
     }
@@ -436,14 +437,44 @@ class SearchForClasses extends Component {
     
     render() {
 
-        
-        
+        let searchButton;
+
+        if (this.state.queryCourses.length < 1) {
+            searchButton = <Link>
+                
+            <Button 
+           
+            color="success" 
+            style={
+                {float: 'right', 
+                opacity: '50%',
+                marginRight: '30%', 
+                paddingLeft: '60px', 
+                paddingRight: '60px'}}>
+            Search
+            </Button>
+        </Link>
+        } else {
+            searchButton = <Link to={{pathname: '/searchresults', state: {query: this.state.queryCourses}}}>
+                
+            <Button 
+           
+            color="success" 
+            style={
+                {float: 'right', 
+                marginRight: '30%', 
+                paddingLeft: '60px', 
+                paddingRight: '60px'}}>
+            Search
+            </Button>
+        </Link>
+        }
+
+
 
         if (this.state.loaded === true) {
-            
-            
-           
-            this.flowLogic()
+            this.flowLogic();
+        
         return (
             
             <div >
@@ -473,19 +504,8 @@ class SearchForClasses extends Component {
                     
                 </div>
                 
-                <Link to={{pathname: '/searchresults', state: {query: this.state.queryCourses}}}>
+                {searchButton}
                 
-                    <Button 
-                   
-                    color="success" 
-                    style={
-                        {float: 'right', 
-                        marginRight: '30%', 
-                        paddingLeft: '60px', 
-                        paddingRight: '60px'}}>
-                    Search
-                    </Button>
-                </Link>
                 <h7 style={{color: 'red'}}>Red = <span style={{fontWeight: "bold"}}>Prerequisite Not Met</span></h7>
                 <h7> | </h7>
                 <h7 style={{color: 'grey'}}>Grey = <span style={{fontWeight: "bold"}}>Taken Already</span> </h7>

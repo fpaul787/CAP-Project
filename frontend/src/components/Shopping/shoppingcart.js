@@ -129,7 +129,6 @@ class ShoppingCart extends Component {
            <Link style={{float:'left', marginRight: '10px'}}>
                 <Button 
                     
-                    onClick={this.removeCourses.bind(this)}
                     color="danger" 
                     style={
                         {
@@ -146,8 +145,6 @@ class ShoppingCart extends Component {
             </Link>
             <Link style={{marginRight: '10px'}}>
                 <Button 
-                    
-                    onClick={this.enrollInCourses.bind(this)}
                     color="success" 
                     style={
                         {
@@ -156,8 +153,6 @@ class ShoppingCart extends Component {
                             paddingRight: '60px',
                             height: '60px',
                             width: '220px',
-                           
-                            
                         }}>
                     Enroll
                 </Button>
@@ -180,7 +175,7 @@ class ShoppingCart extends Component {
         </div>
         } else {
             renderButtons = 
-            <div>
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
             <Link style={{float:'left', marginRight: '10px'}} to={{pathname: '/success', state: {selected: this.state.chosenClasses, type: "Removed from Cart"}}}>
                 <Button 
                     

@@ -13,7 +13,7 @@ class Success extends Component {
         let courses
         if(this.props.location.state.selected != undefined){
             courses = this.props.location.state.selected.map(course => {
-                return <h1>Course ID: {course}</h1>
+                return <h4 style={{marginLeft: '5%'}}>Course: {course}</h4>
              })
         }else{
             courses = ( <h1></h1>)
@@ -129,6 +129,21 @@ class Success extends Component {
                         Drop More Classes
                     </Button>
                  </Link>
+            </div>
+        } else if (this.props.location.state.type === "Initialized"){
+            message = "Courses successfully Initialized, you may now select classes.";
+            link = <div>
+                <Link to="/searchforclasses">
+                <Button 
+                    color="primary" 
+                    style={
+                        {
+                        paddingLeft: '60px', 
+                        paddingRight: '60px',
+                        marginLeft: '20%'}}>
+                    Search My Major Track
+                </Button>
+            </Link>
             </div>
         }
 
