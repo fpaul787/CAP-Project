@@ -153,7 +153,12 @@ class SearchForClasses extends Component {
         
         //this.state.courses[index].selected = !this.state.courses[index].selected;
         
-        var courses = this.state.courses
+        if(this.state.defaultFlowChartColors[index] === 'black' 
+            || this.state.defaultFlowChartColors[index] === 'red'){
+                return 
+        }else{
+            var courses = this.state.courses
+        
         courses[index].selected = !courses[index].selected
         
 
@@ -165,7 +170,9 @@ class SearchForClasses extends Component {
         })
 
        
-        this.setState({queryCourses: queryCourses})  
+        this.setState({queryCourses: queryCourses}) 
+        }
+         
          
     }
 
