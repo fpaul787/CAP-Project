@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const courseNames = [
   'Calculus I',
@@ -31,6 +31,7 @@ class InitializePage extends Component {
     super()
 
     this.state = {
+      putRequestMade: false,
       takenArray: [
         false,
         false,
@@ -140,6 +141,8 @@ class InitializePage extends Component {
       headers: {
         'Content-Type': 'application/json',
       },
+    }).then(() => {
+      this.setState({putRequestMade: true})
     })
 
     
@@ -147,48 +150,60 @@ class InitializePage extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h2>Please select the courses you've already taken:</h2>
-        {courseNames.map((element, index) => {
-          return (
-            <div
-              key={index}
-              style={{
-                float: 'left',
-                margin: '5px',
-                width: '350px',
-                height: '50px',
-                border: '1px solid black',
-                padding: '10px',
-              }}
-            >
-              {element}
-              <Checkbox
+
+    if(this.state.putRequestMade === false){
+      return (
+        <div>
+          <h2>Please select the courses you've already taken:</h2>
+          {courseNames.map((element, index) => {
+            return (
+              <div
+                key={index}
                 style={{
-                  float: 'right',
-                  marginRight: '30px',
-                  width: '25px',
-                  height: '25px',
+                  float: 'left',
+                  margin: '5px',
+                  width: '350px',
+                  height: '50px',
+                  border: '1px solid black',
+                  padding: '10px',
                 }}
-                onClick={this.handleCheckboxChange.bind(this, index)}
-              />
-            </div>
-          )
-        })}
-        <div style={{ float: 'right', margin: '50px', clear: 'both' }}>
-          <Link to="/searchforclasses">
-            <Button
-              onClick={this.setCourses.bind(this)}
-              color="warning"
-              size="lg"
-            >
-              Submit
-            </Button>
-          </Link>
+              >
+                {element}
+                <Checkbox
+                  style={{
+                    float: 'right',
+                    marginRight: '30px',
+                    width: '25px',
+                    height: '25px',
+                  }}
+                  onClick={this.handleCheckboxChange.bind(this, index)}
+                />
+              </div>
+            )
+          })}
+          <div style={{ float: 'right', margin: '50px', clear: 'both' }}>
+            
+              <Button
+                onClick={this.setCourses.bind(this)}
+                color="warning"
+                size="lg"
+              >
+                Submit
+              </Button>
+            
+          </div>
         </div>
-      </div>
-    )
+      )
+    }else{
+      return (
+        <div>
+        
+        <Redirect to='/searchforclasses' />
+        </div>
+        
+      )
+    }
+    
   }
 }
 

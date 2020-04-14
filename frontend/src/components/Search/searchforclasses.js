@@ -121,14 +121,29 @@ class SearchForClasses extends Component {
         }
     }
 
-    async componentDidMount(){
-        await fetch('http://localhost:5000/api/completed')
+    componentDidMount(){
+        fetch('http://localhost:5000/api/completed')
         .then(results => results.json())
-        .then(results => this.setState({completedCourses: results.data[0], loaded: true}))
+        .then(results => this.setState({completedCourses: results.data[0]}))
+        .then(() => {
+            console.log(this.state.completedCourses)
+            this.flowLogic()
+        }).then(() => {
+            this.setState({loaded: true})
+        })
+
+        
+
+        
+        
+        
         
        
     }
 
+    
+
+   
     handleClick(index){
         
         // We might need to change data so that each course object
@@ -169,111 +184,112 @@ class SearchForClasses extends Component {
 
     flowLogic(){
 
-        
+        var colorTest = []
         //Working from the bottom up:
         
         // If SE not taken, Senior Proj red, index 19
         if (this.state.completedCourses.CEN4010 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+            
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         if (this.state.completedCourses.COP3530 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         // OS red if cda3102 or cop4338 not taken
         if (this.state.completedCourses.COP4338 === false
             || this.state.completedCourses.CDA3102 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //STA3033 red if mac2312 not taken
         if (this.state.completedCourses.MAC2312 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //CEN4010
         if (this.state.completedCourses.CGS3095 === false
             || this.state.completedCourses.COP3337 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //COP3530
         if (this.state.completedCourses.COP3337 === false
             || (this.state.completedCourses.COT3100 || this.state.completedCourses.MAD2104) === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //CDA 3102
         if (this.state.completedCourses.COP3337 === false
             || (this.state.completedCourses.COT3100 || this.state.completedCourses.MAD2104) === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //PHY 2049
         if (this.state.completedCourses.PHY2048 === false
             || this.state.completedCourses.MAC2312 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //CGS 3095
         if (this.state.completedCourses.ENC3249 === false
             || this.state.completedCourses.COP2210 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //COP 3337
         if (this.state.completedCourses.COP2210 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //COT 3100
         if (this.state.completedCourses.COP2210 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //MAD 2104
         if (this.state.completedCourses.COP2210 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //PHY2048
         if (this.state.completedCourses.MAC2311 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
         
         //MAC 2312
         if (this.state.completedCourses.MAC2311 === false){
             this.state.defaultFlowChartColors.unshift("red");
-        } else {
+                   } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
 
 
@@ -282,54 +298,63 @@ class SearchForClasses extends Component {
         //ENC3249 
         if (this.state.completedCourses.ENC3249 === true){
             this.state.defaultFlowChartColors.unshift("black");
+            
         } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //CGS1920 
         if (this.state.completedCourses.CGS1920 === true){
             this.state.defaultFlowChartColors.unshift("black");
+            
         } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         //COP2210 
         if (this.state.completedCourses.COP2210 === true){
             this.state.defaultFlowChartColors.unshift("black");
+            
         } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         // NSE2
         if (this.state.completedCourses.NSE2 === true){
             this.state.defaultFlowChartColors.unshift("black");
+            
         } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         // NSE1
         if (this.state.completedCourses.NSE1 === true){
             this.state.defaultFlowChartColors.unshift("black");
+            
         } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
         // CAL1
         if (this.state.completedCourses.MAC2311 === true){
             this.state.defaultFlowChartColors.unshift("black");
+            
         } else {
             this.state.defaultFlowChartColors.unshift("");
-        }
+                }
 
+        
         // beginning at index 6 [calculus 2]
         // CAL2
         if (this.state.completedCourses.MAC2312 === true){
             this.state.defaultFlowChartColors[6]="black";
+            
         }
 
         //PHY2048
         if (this.state.completedCourses.PHY2048 === true){
             this.state.defaultFlowChartColors[7]="black";
+            colorTest[7] = "black"
         }
 
         //MAD 2104
@@ -337,58 +362,73 @@ class SearchForClasses extends Component {
             || this.state.completedCourses.COT3100 === true){
             this.state.defaultFlowChartColors[8]="black";
             this.state.defaultFlowChartColors[9]="black";
+
+            
         }
 
         //COP3337
         if (this.state.completedCourses.COP3337 === true){
             this.state.defaultFlowChartColors[10]="black";
+            
         }
         
         //CGS3095
         if (this.state.completedCourses.CGS3095 === true){
             this.state.defaultFlowChartColors[11]="black";
+            
         }
 
         //PHY2049
         if (this.state.completedCourses.PHY2049 === true){
             this.state.defaultFlowChartColors[12]="black";
+            
         }
 
         //CDA3102
         if (this.state.completedCourses.CDA3102 === true){
             this.state.defaultFlowChartColors[13]="black";
+            
         }
 
         //COP3530
         if (this.state.completedCourses.COP3530 === true){
             this.state.defaultFlowChartColors[14]="black";
+            
         }
 
         //CEN4010
         if (this.state.completedCourses.CEN4010 === true){
             this.state.defaultFlowChartColors[15]="black";
+            
         }
 
         //STA3033
         if (this.state.completedCourses.STA3033 === true){
             this.state.defaultFlowChartColors[16]="black";
+            
         }
 
         //COP4610
         if (this.state.completedCourses.COP4610 === true){
             this.state.defaultFlowChartColors[17]="black";
+            
         }
 
         //COP4338
         if (this.state.completedCourses.COP4338 === true){
             this.state.defaultFlowChartColors[18]="black";
+            
         }
 
         //CIS4911
         if (this.state.completedCourses.CIS4911 === true){
             this.state.defaultFlowChartColors[19]="black";
+            
         }
 
+        
+        
+        
         
     }
 
@@ -397,11 +437,13 @@ class SearchForClasses extends Component {
     render() {
 
         
-        if (this.state.loaded === true) {
-
-            
-            this.flowLogic();
         
+
+        if (this.state.loaded === true) {
+            
+            
+           
+            this.flowLogic()
         return (
             
             <div >
@@ -452,7 +494,7 @@ class SearchForClasses extends Component {
             </div> 
         );
         } else {
-            
+           
             return <div>Loading....</div>
         }
         
