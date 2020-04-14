@@ -291,6 +291,23 @@ class SearchResults extends Component {
           </Grid>
         </div>
 
+            <span className="previousPageButton">
+            <Link to="/searchforclasses">
+                
+                <Button 
+               
+                color="warning" 
+                style={
+                    {float: 'left', 
+                    marginRight: '50%', 
+                    marginLeft: '50px',
+                    marginTop: '35px',
+                    paddingLeft: '60px', 
+                    paddingRight: '60px'}}>
+                Back
+                </Button>
+            </Link>
+            </span>
         <span className="selectionArea">
           <strong style={{ marginRight: '50px' }}>
             {this.state.courseCount} Classes Selected.

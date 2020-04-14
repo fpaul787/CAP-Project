@@ -456,7 +456,7 @@ class SearchForClasses extends Component {
             style={
                 {float: 'right', 
                 opacity: '50%',
-                marginRight: '30%', 
+                marginRight: '20%', 
                 paddingLeft: '60px', 
                 paddingRight: '60px'}}>
             Search
@@ -470,11 +470,12 @@ class SearchForClasses extends Component {
             color="success" 
             style={
                 {float: 'right', 
-                marginRight: '30%', 
+                marginRight: '20%', 
                 paddingLeft: '60px', 
                 paddingRight: '60px'}}>
             Search
             </Button>
+            
         </Link>
         }
 
@@ -512,8 +513,27 @@ class SearchForClasses extends Component {
                     
                 </div>
                 
+                <div>
                 {searchButton}
+               
+                <span className="previousPageButton">
+            <Link to="/initialize">
                 
+                <Button 
+               
+                color="warning" 
+                style={
+                    {float: 'left', 
+                    marginRight: '60px',
+                    marginLeft: '40px',
+                    
+                    paddingLeft: '60px', 
+                    paddingRight: '60px'}}>
+                Back
+                </Button>
+            </Link>
+            </span>
+                </div>
                 <h7 style={{color: 'red'}}>Red = <span style={{fontWeight: "bold"}}>Prerequisite Not Met</span></h7>
                 <h7> | </h7>
                 <h7 style={{color: 'grey'}}>Grey = <span style={{fontWeight: "bold"}}>Taken Already</span> </h7>
