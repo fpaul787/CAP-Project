@@ -82,7 +82,9 @@ class SearchResults extends Component {
 
   handleCheckboxChange(course, itemIndex, className) {
 
+    
     let tempArray = this.state.chosenClassNames;
+    let selectedCards = this.state.selected
 
     
 
@@ -97,16 +99,49 @@ class SearchResults extends Component {
       if (nameIndex > -1){
         tempArray.splice(nameIndex, 1);
       }
+      selectedCards[itemIndex] = !selectedCards[itemIndex]
+    for(let i = 0; i< selectedCards.length; i++){
 
-      this.setState({ courseCount: this.state.courseCount - 1 })
+      if(i != itemIndex){
+        selectedCards[i] = false
+      }
+      
+    }
+      this.setState({ courseCount: this.state.courseCount  })
     } else {
+      
+      // remove classes from cards to delected them
+      // kinda inefficient, but we'll use for now
+      for(let i = 0; i< selectedCards.length; i++){
+
+        if(i != itemIndex){
+          selectedCards[i] = false
+        }
+        
+      }
+      selectedCards[itemIndex] = !selectedCards[itemIndex]
+
+
       this.state.chosenClasses.push(course._id)
+
+      // clear list, then add name
+      tempArray = []
+      
       tempArray.push(className);
-      this.setState({ courseCount: this.state.courseCount + 1 })
+
+      
+      this.setState({ courseCount: tempArray.length  })
     }
 
-    this.state.selected[itemIndex] = !this.state.selected[itemIndex]
+    
+
+    this.setState({selected: selectedCards})
+    //this.state.selected[itemIndex] = !this.state.selected[itemIndex]
+
     this.setState({chosenClassNames: tempArray});
+    console.log(this.state.chosenClasses)
+
+
   }
 
   addToCart() {
@@ -239,7 +274,7 @@ class SearchResults extends Component {
       this.state.courses.map(item => {
         for (let i = 0; i < userCourses.length; i++) {
           if (item.name === userCourses[i].name) {
-            console.log(item)
+           
           
             
             this.state.courseOptions.push(item)
@@ -248,7 +283,7 @@ class SearchResults extends Component {
       })
     }
 
-    console.log(this.state.courseOptions)
+    
     return (
 
       
@@ -264,9 +299,10 @@ class SearchResults extends Component {
 				// if not selected, class of card is regularCard
 				// if selected, class of card is clickedCard
               let cardClassName = !this.state.selected[index]
-                ? classes.regularCard
+                ? classes.regularCard 
                 : classes.clickedCard
-
+               
+               
               return (
                 <Card key={index} className={classes.cards}>
                   <ButtonBase
