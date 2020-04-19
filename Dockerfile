@@ -1,8 +1,13 @@
-FROM node:10
+FROM node:12
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN npm install -g nodemon
+COPY package*.json ./
+
+RUN npm install 
+
+COPY . .
 
 EXPOSE 5000
 CMD [ "npm", "run", "server" ]

@@ -1,2 +1,2 @@
-To run backend and frontend: "npm run dev"
+# FIU Computer Science Class Search Project
 To install dependencies: "npm run client-install"
