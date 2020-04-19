@@ -123,7 +123,7 @@ class SearchForClasses extends Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:5000/api/completed')
+        fetch('/api/completed')
         .then(results => results.json())
         .then(results => this.setState({completedCourses: results.data[0]}))
         .then(() => {

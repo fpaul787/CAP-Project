@@ -10,4 +10,6 @@ RUN npm install
 COPY . .
 
 EXPOSE 5000
-CMD [ "npm", "run", "server" ]
+CMD [ "npm", "run", "dev" ]
+
+#docker run -p 3000:3000 -p 5000:5000 [app-name]
