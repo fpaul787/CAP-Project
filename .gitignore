@@ -5,8 +5,10 @@ node_modules/
 .lock
 data-node/
 data/
-
+scripts/
 
 dockercompose.1.txt
 docker-compose.yml
 Tasks.txt
+config/keys.js
+
