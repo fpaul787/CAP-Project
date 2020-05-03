@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 import { Link, Redirect } from 'react-router-dom'
 
+// change this, 
+// Computer science major
+// core courses
+// make an api to fetch this courses
 const courseNames = [
   'Calculus I',
   'Natural Science I',

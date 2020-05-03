@@ -10,4 +10,4 @@ dockercompose.1.txt
 docker-compose.yml
 Tasks.txt
 config/keys.js
-
+config/keys.json
