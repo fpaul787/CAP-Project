@@ -8,3 +8,12 @@ data-node/
 
 dockercompose.1.txt
 Tasks.txt
+scripts/drivers/chromedriver.exe
+scripts/test.csv
+scripts/search.py
+scripts/excel.py
+scripts/debug.log
+scripts/data.json
+scripts/courses.csv
+data/data.json
+config/keys.js
