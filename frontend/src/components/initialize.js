@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 // change this, 
 // Computer science major
@@ -137,7 +137,7 @@ class InitializePage extends Component {
       CIS4911: this.state.takenArray[19],
     }
 
-    const response = await fetch('/api/completed/1', {
+    await fetch('/api/completed/1', {
       method: 'PUT',
       body: JSON.stringify(setCourses),
       headers: {

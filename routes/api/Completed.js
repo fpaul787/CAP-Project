@@ -21,23 +21,22 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    console.log(req.body)
-  var completedList = null
+  if(req.params.id === "1"){
+    console.log('success')
     try{
-      completedList = await Completed.findByIdAndUpdate(req.params.id, 
+      const completedList = await Completed.findOneAndUpdate("5eb0e28dbc6f85d8689d0766", 
       { 
-        ...req.body
-    });
-    
-      httpResponse.successResponse(res, completedList);
+        completed: req.body
+    },{useFindAndModify: false});
+   
+
       
+      httpResponse.successResponse(res, completedList);
     } catch (e) {
       console.log(e)
       httpResponse.failureResponse(res, e.toString());
     }
-    finally{
-      console.log('Completed list:',completedList)
-    }
+  }
   
   
 
