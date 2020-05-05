@@ -56,8 +56,7 @@ class InitializePage extends Component {
       ],
     }
 
-    // reset everything to 0
-    this.initalize()
+    
   }
 
   handleCheckboxChange(index) {
@@ -66,12 +65,10 @@ class InitializePage extends Component {
     takenArray[index] = !takenArray[index]
 
     // this.state.takenArray[index] = !this.state.takenArray[index];
-    this.setState({ takenArray: takenArray }, () => {
-      this.initalize()
-    })
+    this.setState({ takenArray: takenArray })
   }
 
-  initalize() {
+  componentDidMount(){
     let initializedCourses = {
       MAC2311: false,
       NSE1: false,
@@ -95,7 +92,7 @@ class InitializePage extends Component {
       CIS4911: false,
     }
 
-    fetch('/api/completed/5eb0e28dbc6f85d8689d0766', {
+    fetch('/api/completed/1', {
       method: 'PUT',
       body: JSON.stringify(initializedCourses),
       headers: {
@@ -110,6 +107,7 @@ class InitializePage extends Component {
         console.error('Error:', error)
       })
   }
+
 
   async setCourses() {
     let setCourses = {
@@ -135,7 +133,7 @@ class InitializePage extends Component {
       CIS4911: this.state.takenArray[19],
     }
 
-    const response = await fetch('/api/completed/5eb0e28dbc6f85d8689d0766', {
+    const response = await fetch('/api/completed/1', {
       method: 'PUT',
       body: JSON.stringify(setCourses),
       headers: {
