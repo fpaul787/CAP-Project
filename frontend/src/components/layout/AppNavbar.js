@@ -11,7 +11,7 @@ import {
     Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import './styles/flowstyles.css';
+import '../styles/flowstyles.css';
 
 
 class AppNavbar extends Component {

@@ -8,8 +8,10 @@
 		"client-install": "npm install --prefix client",
 		"start": "node server.js",
 		"server": "nodemon server.js",
+		"bserver": "nodemon server_.js",
 		"frontend": "npm start --prefix frontend",
-		"dev": "concurrently \"npm run server\" \"cd frontend && npm start\" "
+		"dev": "concurrently \"npm run server\" \"cd frontend && npm start\" ",
+		"fdev": "concurrently \"npm run bserver\" \"cd frontend && npm start\" "
 	},
 	"author": "MC",
 	"license": "ISC",

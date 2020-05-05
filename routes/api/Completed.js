@@ -21,33 +21,22 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
+    console.log(req.body)
+  var completedList = null
     try{
-      const completedList = await Completed.findByIdAndUpdate(req.params.id, 
-      { MAC2311: req.body.MAC2311, 
-        NSE1: req.body.NSE1,
-        NSE2: req.body.NSE2,
-        COP2210: req.body.COP2210,
-        CGS1920: req.body.CGS1920,
-        ENC3249: req.body.ENC3249,
-        MAC2312: req.body.MAC2312,
-        PHY2048: req.body.PHY2048,
-        MAD2104: req.body.MAD2104,
-        COT3100: req.body.COT3100,
-        COP3337: req.body.COP3337,
-        CGS3095: req.body.CGS3095,
-        PHY2049: req.body.PHY2049,
-        CDA3102: req.body.CDA3102,
-        COP3530: req.body.COP3530,
-        CEN4010: req.body.CEN4010,
-        STA3033: req.body.STA3033,
-        COP4610: req.body.COP4610,
-        COP4338: req.body.COP4338,
-        CIS4911: req.body.CIS4911
+      completedList = await Completed.findByIdAndUpdate(req.params.id, 
+      { 
+        ...req.body
     });
+    
       httpResponse.successResponse(res, completedList);
+      
     } catch (e) {
       console.log(e)
       httpResponse.failureResponse(res, e.toString());
+    }
+    finally{
+      console.log('Completed list:',completedList)
     }
   
   

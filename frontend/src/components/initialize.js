@@ -73,6 +73,8 @@ class InitializePage extends Component {
     this.setState({ takenArray: takenArray }, () => {
       this.initalize()
     })
+    
+    
   }
 
   initalize() {
@@ -99,6 +101,7 @@ class InitializePage extends Component {
       CIS4911: false,
     }
 
+    
     fetch('/api/completed/5e7f509b737acab01ef9fe02', {
       method: 'PUT',
       body: JSON.stringify(initializedCourses),
@@ -139,6 +142,7 @@ class InitializePage extends Component {
       CIS4911: this.state.takenArray[19],
     }
 
+    console.log(setCourses)
     const response = await fetch('/api/completed/5e7f509b737acab01ef9fe02', {
       method: 'PUT',
       body: JSON.stringify(setCourses),
