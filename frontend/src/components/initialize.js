@@ -95,7 +95,7 @@ class InitializePage extends Component {
       CIS4911: false,
     }
 
-    fetch('/api/completed/5e7f509b737acab01ef9fe02', {
+    fetch('/api/completed/5eb0e28dbc6f85d8689d0766', {
       method: 'PUT',
       body: JSON.stringify(initializedCourses),
       headers: {
@@ -135,7 +135,7 @@ class InitializePage extends Component {
       CIS4911: this.state.takenArray[19],
     }
 
-    const response = await fetch('/api/completed/5e7f509b737acab01ef9fe02', {
+    const response = await fetch('/api/completed/5eb0e28dbc6f85d8689d0766', {
       method: 'PUT',
       body: JSON.stringify(setCourses),
       headers: {
