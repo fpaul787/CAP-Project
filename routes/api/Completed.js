@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   if(req.params.id === "1"){
-    console.log('success')
+    
     try{
       const completedList = await Completed.findOneAndUpdate("5eb0e28dbc6f85d8689d0766", 
       { 
