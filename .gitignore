@@ -9,5 +9,17 @@ scripts/
 dockercompose.1.txt
 docker-compose.yml
 Tasks.txt
+<<<<<<< HEAD
 config/keys.js
 config/keys.json
+=======
+scripts/drivers/chromedriver.exe
+scripts/test.csv
+scripts/search.py
+scripts/excel.py
+scripts/debug.log
+scripts/data.json
+scripts/courses.csv
+data/data.json
+config/keys.js
+>>>>>>> master

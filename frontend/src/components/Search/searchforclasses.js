@@ -125,7 +125,7 @@ class SearchForClasses extends Component {
     componentDidMount(){
         fetch('/api/completed')
         .then(results => results.json())
-        .then(results => this.setState({completedCourses: results.data[0]}))
+        .then(results => this.setState({completedCourses: results.data[0].completed}))
         .then(() => {
             console.log(this.state.completedCourses)
             this.flowLogic()
